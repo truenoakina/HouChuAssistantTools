@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="10/12/2021 16:36:48" ReportInfo.Modified="12/13/2021 14:02:52" ReportInfo.CreatorVersion="2016.1.0.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8SpNDUdIL12knNSqiNSC0BCerLDk8tlLVhtM+qYCD7iKvGPH5slL002Fq63njcUJsYd56XNh14caiLn1+bx6YW212i1TPha8SqPKmBsAwTynDk/A+FLshPLcd/Sta18IvbDbwJsNFl6A/6qgklzfcvb7Re0X/R3QGDE3W7mCFHRVNPpalkyqaU/MlmzhxteTCw==">
+      <TableDataSource Name="Table" Alias="米饭间生产汇总" DataType="System.Int32" Enabled="true" SelectCommand="exec mifanhuizong @date">
+        <Column Name="生产车间" DataType="System.String"/>
+        <Column Name="米饭" DataType="System.String"/>
+        <Column Name="总量" DataType="System.String"/>
+        <Column Name="单位" DataType="System.String"/>
+        <Column Name="锅数" DataType="System.String"/>
+        <Column Name="框数" DataType="System.String"/>
+        <CommandParameter Name="date" DataType="31" Expression="[date]" DefaultValue="2021-10-11"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="date" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15">
+    <GroupHeaderBand Name="GroupHeader1" Width="756" Height="47.25" StartNewPage="true" Condition="[米饭间生产汇总.生产车间]">
+      <TextObject Name="Text2" Left="226.8" Top="18.9" Width="255.15" Height="28.35" Text="[[米饭间生产汇总.生产车间]]" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text5" Top="18.9" Width="189" Height="18.9" Text="文件编号:JZ05-4-001-01" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text24" Left="538.65" Top="28.35" Width="170.1" Height="18.9" Text="生产日期:[date]" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text9" Left="538.65" Top="9.45" Width="170.1" Height="18.9" Text="第[Page]页 共[TotalPages]页" Font="宋体, 9pt"/>
+      <DataBand Name="Data1" Top="83.6" Width="756" Height="28.35" CanGrow="true" DataSource="Table" KeepTogether="true">
+        <TextObject Name="Text3" Left="85.05" Width="207.9" Height="28.35" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[米饭间生产汇总.米饭]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        <TextObject Name="Text4" Left="292.95" Width="94.5" Height="28.35" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[米饭间生产汇总.总量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        <TextObject Name="Text6" Left="387.45" Width="75.6" Height="28.35" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[米饭间生产汇总.单位]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        <TextObject Name="Text8" Left="463.05" Width="94.5" Height="28.35" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[米饭间生产汇总.锅数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        <TextObject Name="Text10" Left="557.55" Width="85.05" Height="28.35" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[米饭间生产汇总.框数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        <DataHeaderBand Name="DataHeader1" Top="51.25" Width="756" Height="28.35">
+          <TextObject Name="Text1" Left="85.05" Width="207.9" Height="28.35" Border.Lines="All" Text="米饭" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TextObject Name="Text11" Left="292.95" Width="94.5" Height="28.35" Border.Lines="All" Text="总量" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TextObject Name="Text12" Left="387.45" Width="75.6" Height="28.35" Border.Lines="All" Text="单位" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TextObject Name="Text13" Left="463.05" Width="94.5" Height="28.35" Border.Lines="All" Text="锅数" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TextObject Name="Text14" Left="557.55" Width="85.05" Height="28.35" Border.Lines="All" Text="框数" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+        </DataHeaderBand>
+      </DataBand>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

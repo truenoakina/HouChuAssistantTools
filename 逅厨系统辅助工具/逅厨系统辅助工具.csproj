@@ -1,0 +1,1162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C0E97B9-870C-45D7-B86F-37F78777AB40}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>逅厨系统辅助工具</RootNamespace>
+    <AssemblyName>逅厨系统辅助工具</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>houchu.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Schedule.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Service, Version=2021.2.8.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\FastReport.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.zkemkeeper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.zkemkeeper.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Pinyin4net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\pinyin4net.1.0.0\lib\net40\Pinyin4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=8.6.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.PDF.8.6.0\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.10\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.10\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BarcodeHelper.cs" />
+    <Compile Include="BOMGYNAME.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BOMGYNAME.Designer.cs">
+      <DependentUpon>BOMGYNAME.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CGDJQST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CGDJQST.Designer.cs">
+      <DependentUpon>CGDJQST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CGDJQST_WL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CGDJQST_WL.Designer.cs">
+      <DependentUpon>CGDJQST_WL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassWord.Designer.cs">
+      <DependentUpon>ChangePassWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseTyp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseTyp.Designer.cs">
+      <DependentUpon>ChooseTyp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComboxItem.cs" />
+    <Compile Include="Contract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract.Designer.cs">
+      <DependentUpon>Contract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteChooseHLS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteChooseHLS.Designer.cs">
+      <DependentUpon>DeleteChooseHLS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteChoose.Designer.cs">
+      <DependentUpon>DeleteChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DingDongOrder\DingDongCusInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DingDongOrder\DingDongCusInfo.Designer.cs">
+      <DependentUpon>DingDongCusInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DingDongOrder\DingDongOrderImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DingDongOrder\DingDongOrderImport.Designer.cs">
+      <DependentUpon>DingDongOrderImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExcelHelper.cs" />
+    <Compile Include="FactoryDayData\AttendanceConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\AttendanceConfig.Designer.cs">
+      <DependentUpon>AttendanceConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\AttendanceWrite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\AttendanceWrite.Designer.cs">
+      <DependentUpon>AttendanceWrite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\DaySummaryData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\DaySummaryData.Designer.cs">
+      <DependentUpon>DaySummaryData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\Depdetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\Depdetail.Designer.cs">
+      <DependentUpon>Depdetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\EmployeeDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\EmployeeDetail.Designer.cs">
+      <DependentUpon>EmployeeDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\EmployeeChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\EmployeeChoose.Designer.cs">
+      <DependentUpon>EmployeeChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\EmployeeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\EmployeeInfo.Designer.cs">
+      <DependentUpon>EmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\DepInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\DepInfo.Designer.cs">
+      <DependentUpon>DepInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\EnergyWrite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\EnergyWrite.Designer.cs">
+      <DependentUpon>EnergyWrite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\FDD_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\FDD_Main.Designer.cs">
+      <DependentUpon>FDD_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\HolidayAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\HolidayAdd.Designer.cs">
+      <DependentUpon>HolidayAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\HolidaySet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\HolidaySet.Designer.cs">
+      <DependentUpon>HolidaySet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\AttendanceReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\AttendanceReport.Designer.cs">
+      <DependentUpon>AttendanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\HoursAdjust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\HoursAdjust.Designer.cs">
+      <DependentUpon>HoursAdjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\HoursAdjustDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\HoursAdjustDetail.Designer.cs">
+      <DependentUpon>HoursAdjustDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\LogFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\LogFind.Designer.cs">
+      <DependentUpon>LogFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FactoryDayData\SaleCostReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactoryDayData\SaleCostReport.Designer.cs">
+      <DependentUpon>SaleCostReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_BOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_BOM.Designer.cs">
+      <DependentUpon>FC_BOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_CAIYAO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_CAIYAO.Designer.cs">
+      <DependentUpon>FC_CAIYAO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_CAIYAO_ADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_CAIYAO_ADD.Designer.cs">
+      <DependentUpon>FC_CAIYAO_ADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_KUCUNINFO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_KUCUNINFO.Designer.cs">
+      <DependentUpon>FC_KUCUNINFO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_KUCUNYUGU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_KUCUNYUGU.Designer.cs">
+      <DependentUpon>FC_KUCUNYUGU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_ORDER.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_ORDER.Designer.cs">
+      <DependentUpon>FC_ORDER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_ORDER_ADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_ORDER_ADD.Designer.cs">
+      <DependentUpon>FC_ORDER_ADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_ORDER_CHANGE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_ORDER_CHANGE.Designer.cs">
+      <DependentUpon>FC_ORDER_CHANGE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_PRODUCR_INFO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_PRODUCR_INFO.Designer.cs">
+      <DependentUpon>FC_PRODUCR_INFO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_SUPPLIER.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_SUPPLIER.Designer.cs">
+      <DependentUpon>FC_SUPPLIER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_SUPPLIER_ADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_SUPPLIER_ADD.Designer.cs">
+      <DependentUpon>FC_SUPPLIER_ADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_YL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_YL.Designer.cs">
+      <DependentUpon>FC_YL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_YLTYPE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_YLTYPE.Designer.cs">
+      <DependentUpon>FC_YLTYPE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_YLTYPE_ADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_YLTYPE_ADD.Designer.cs">
+      <DependentUpon>FC_YLTYPE_ADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FC_YL_ADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FC_YL_ADD.Designer.cs">
+      <DependentUpon>FC_YL_ADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FolderBrowserDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FolderNameEditor.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HLSChangeChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HLSChangeChoose.Designer.cs">
+      <DependentUpon>HLSChangeChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDHCReport\GDHCReportMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDHCReport\GDHCReportMain.Designer.cs">
+      <DependentUpon>GDHCReportMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCreports\Gcschuizong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCreports\Gcschuizong.Designer.cs">
+      <DependentUpon>Gcschuizong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCreports\Gcscdetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCreports\Gcscdetail.Designer.cs">
+      <DependentUpon>Gcscdetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GQZZDETAIL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GQZZDETAIL.Designer.cs">
+      <DependentUpon>GQZZDETAIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GQZZINFO.cs" />
+    <Compile Include="GZTASS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GZTASS.Designer.cs">
+      <DependentUpon>GZTASS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCcustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCcustomer.Designer.cs">
+      <DependentUpon>HCcustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCcustomer_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCcustomer_add.Designer.cs">
+      <DependentUpon>HCcustomer_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCcustomer_update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCcustomer_update.Designer.cs">
+      <DependentUpon>HCcustomer_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCMaterial.Designer.cs">
+      <DependentUpon>HCMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCMaterial_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCMaterial_add.Designer.cs">
+      <DependentUpon>HCMaterial_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCMaterial_update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCMaterial_update.Designer.cs">
+      <DependentUpon>HCMaterial_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCreports\GztBushiCL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCreports\GztBushiCL.Designer.cs">
+      <DependentUpon>GztBushiCL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCreports\HCReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCreports\HCReports.Designer.cs">
+      <DependentUpon>HCReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCreports\Test111.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCreports\Test111.Designer.cs">
+      <DependentUpon>Test111.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HRKQSJFORMAT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HRKQSJFORMAT.Designer.cs">
+      <DependentUpon>HRKQSJFORMAT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="images\WEM3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="images\WEM3.Designer.cs">
+      <DependentUpon>WEM3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="images\WEM2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="images\WEM2.Designer.cs">
+      <DependentUpon>WEM2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="images\WEM1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="images\WEM1.Designer.cs">
+      <DependentUpon>WEM1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InternetCheck.cs" />
+    <Compile Include="JSHCDKMXB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSHCDKMXB.Designer.cs">
+      <DependentUpon>JSHCDKMXB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Level1BOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Level1BOM.Designer.cs">
+      <DependentUpon>Level1BOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginInfo.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Material.Designer.cs">
+      <DependentUpon>Material.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialDayUse\ChooseChanpin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialDayUse\ChooseChanpin.Designer.cs">
+      <DependentUpon>ChooseChanpin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialDayUse\MaterialDayUse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialDayUse\MaterialDayUse.Designer.cs">
+      <DependentUpon>MaterialDayUse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialDayUse\NodeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialDayUse\NodeAdd.Designer.cs">
+      <DependentUpon>NodeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialDayUse\YlToChanpin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialDayUse\YlToChanpin.Designer.cs">
+      <DependentUpon>YlToChanpin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Material_add.Designer.cs">
+      <DependentUpon>Material_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material_update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Material_update.Designer.cs">
+      <DependentUpon>Material_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MsgBox.cs" />
+    <Compile Include="MyVar.cs" />
+    <Compile Include="NoBomGy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoBomGy.Designer.cs">
+      <DependentUpon>NoBomGy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NPOIOprateExcel.cs" />
+    <Compile Include="OutSongHuoDanGDHCDDD2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutSongHuoDanGDHCDDD2.Designer.cs">
+      <DependentUpon>OutSongHuoDanGDHCDDD2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutSongHuoDanGDHCDDD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutSongHuoDanGDHCDDD.Designer.cs">
+      <DependentUpon>OutSongHuoDanGDHCDDD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutSongHuoDanGDHC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutSongHuoDanGDHC.Designer.cs">
+      <DependentUpon>OutSongHuoDanGDHC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutOrderGDHC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutOrderGDHC.Designer.cs">
+      <DependentUpon>OutOrderGDHC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutOrderHLS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutOrderHLS.Designer.cs">
+      <DependentUpon>OutOrderHLS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutOrder.Designer.cs">
+      <DependentUpon>OutOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDHCChangeChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDHCChangeChoose.Designer.cs">
+      <DependentUpon>GDHCChangeChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutOrderOrgChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutOrderOrgChoose.Designer.cs">
+      <DependentUpon>OutOrderOrgChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartDeleteHLS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartDeleteHLS.Designer.cs">
+      <DependentUpon>PartDeleteHLS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartDelete.Designer.cs">
+      <DependentUpon>PartDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrinterChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrinterChoose.Designer.cs">
+      <DependentUpon>PrinterChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomStr.cs" />
+    <Compile Include="HCreports\RefreshReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HCreports\RefreshReport.Designer.cs">
+      <DependentUpon>RefreshReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolOrder\LabelPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchoolOrder\LabelPrint.Designer.cs">
+      <DependentUpon>LabelPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolOrder\PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchoolOrder\PurchaseOrder.Designer.cs">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolOrder\SaleData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchoolOrder\SaleData.Designer.cs">
+      <DependentUpon>SaleData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolOrder\SchoolMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchoolOrder\SchoolMenu.Designer.cs">
+      <DependentUpon>SchoolMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolOrder\SchoolOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchoolOrder\SchoolOrder.Designer.cs">
+      <DependentUpon>SchoolOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCZLDMAIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCZLDMAIN.Designer.cs">
+      <DependentUpon>SCZLDMAIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCZLDUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCZLDUpdate.Designer.cs">
+      <DependentUpon>SCZLDUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SheetChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SheetChoose.Designer.cs">
+      <DependentUpon>SheetChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SNCK\SNCK_InspectionReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SNCK\SNCK_InspectionReport.Designer.cs">
+      <DependentUpon>SNCK_InspectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQLHelper.cs" />
+    <Compile Include="SQLHelperJD.cs" />
+    <Compile Include="SQLHelperYKT.cs" />
+    <Compile Include="StrHelper.cs" />
+    <Compile Include="SystemSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemSet.Designer.cs">
+      <DependentUpon>SystemSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemSetValuesChangedListener.cs" />
+    <Compile Include="TabManager.cs" />
+    <Compile Include="Test20HLS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test20HLS.Designer.cs">
+      <DependentUpon>Test20HLS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test20.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test20.Designer.cs">
+      <DependentUpon>Test20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test69.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test69.Designer.cs">
+      <DependentUpon>Test69.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tool.cs" />
+    <Compile Include="UNUnitCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UNUnitCheck.Designer.cs">
+      <DependentUpon>UNUnitCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WrkDdInfo.cs" />
+    <Compile Include="WrkDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WrkDetail.Designer.cs">
+      <DependentUpon>WrkDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YKTSKRECORD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YKTSKRECORD.Designer.cs">
+      <DependentUpon>YKTSKRECORD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YKTupdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YKTupdate.Designer.cs">
+      <DependentUpon>YKTupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WrkWarn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WrkWarn.Designer.cs">
+      <DependentUpon>WrkWarn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZizhiWarn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZizhiWarn.Designer.cs">
+      <DependentUpon>ZizhiWarn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZKIfaceManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZKIfaceManage.Designer.cs">
+      <DependentUpon>ZKIfaceManage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BOMGYNAME.resx">
+      <DependentUpon>BOMGYNAME.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CGDJQST.resx">
+      <DependentUpon>CGDJQST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CGDJQST_WL.resx">
+      <DependentUpon>CGDJQST_WL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePassWord.resx">
+      <DependentUpon>ChangePassWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseTyp.resx">
+      <DependentUpon>ChooseTyp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contract.resx">
+      <DependentUpon>Contract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteChooseHLS.resx">
+      <DependentUpon>DeleteChooseHLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteChoose.resx">
+      <DependentUpon>DeleteChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DingDongOrder\DingDongCusInfo.resx">
+      <DependentUpon>DingDongCusInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DingDongOrder\DingDongOrderImport.resx">
+      <DependentUpon>DingDongOrderImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\AttendanceConfig.resx">
+      <DependentUpon>AttendanceConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\AttendanceWrite.resx">
+      <DependentUpon>AttendanceWrite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\DaySummaryData.resx">
+      <DependentUpon>DaySummaryData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\Depdetail.resx">
+      <DependentUpon>Depdetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\EmployeeDetail.resx">
+      <DependentUpon>EmployeeDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\EmployeeChoose.resx">
+      <DependentUpon>EmployeeChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\EmployeeInfo.resx">
+      <DependentUpon>EmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\DepInfo.resx">
+      <DependentUpon>DepInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\EnergyWrite.resx">
+      <DependentUpon>EnergyWrite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\FDD_Main.resx">
+      <DependentUpon>FDD_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\HolidayAdd.resx">
+      <DependentUpon>HolidayAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\HolidaySet.resx">
+      <DependentUpon>HolidaySet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\AttendanceReport.resx">
+      <DependentUpon>AttendanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\HoursAdjust.resx">
+      <DependentUpon>HoursAdjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\HoursAdjustDetail.resx">
+      <DependentUpon>HoursAdjustDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\LogFind.resx">
+      <DependentUpon>LogFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactoryDayData\SaleCostReport.resx">
+      <DependentUpon>SaleCostReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_BOM.resx">
+      <DependentUpon>FC_BOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_CAIYAO.resx">
+      <DependentUpon>FC_CAIYAO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_CAIYAO_ADD.resx">
+      <DependentUpon>FC_CAIYAO_ADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_KUCUNINFO.resx">
+      <DependentUpon>FC_KUCUNINFO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_KUCUNYUGU.resx">
+      <DependentUpon>FC_KUCUNYUGU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_ORDER.resx">
+      <DependentUpon>FC_ORDER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_ORDER_ADD.resx">
+      <DependentUpon>FC_ORDER_ADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_ORDER_CHANGE.resx">
+      <DependentUpon>FC_ORDER_CHANGE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_PRODUCR_INFO.resx">
+      <DependentUpon>FC_PRODUCR_INFO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_SUPPLIER.resx">
+      <DependentUpon>FC_SUPPLIER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_SUPPLIER_ADD.resx">
+      <DependentUpon>FC_SUPPLIER_ADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_YL.resx">
+      <DependentUpon>FC_YL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_YLTYPE.resx">
+      <DependentUpon>FC_YLTYPE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_YLTYPE_ADD.resx">
+      <DependentUpon>FC_YLTYPE_ADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FC_YL_ADD.resx">
+      <DependentUpon>FC_YL_ADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HLSChangeChoose.resx">
+      <DependentUpon>HLSChangeChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDHCReport\GDHCReportMain.resx">
+      <DependentUpon>GDHCReportMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCreports\Gcscdetail.resx">
+      <DependentUpon>Gcscdetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GQZZDETAIL.resx">
+      <DependentUpon>GQZZDETAIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GZTASS.resx">
+      <DependentUpon>GZTASS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCcustomer.resx">
+      <DependentUpon>HCcustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCcustomer_add.resx">
+      <DependentUpon>HCcustomer_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCcustomer_update.resx">
+      <DependentUpon>HCcustomer_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCMaterial.resx">
+      <DependentUpon>HCMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCMaterial_add.resx">
+      <DependentUpon>HCMaterial_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCMaterial_update.resx">
+      <DependentUpon>HCMaterial_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCreports\Gcschuizong.resx">
+      <DependentUpon>Gcschuizong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCreports\GztBushiCL.resx">
+      <DependentUpon>GztBushiCL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCreports\HCReports.resx">
+      <DependentUpon>HCReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCreports\RefreshReport.resx">
+      <DependentUpon>RefreshReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCreports\Test111.resx">
+      <DependentUpon>Test111.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HRKQSJFORMAT.resx">
+      <DependentUpon>HRKQSJFORMAT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\WEM3.resx">
+      <DependentUpon>WEM3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\WEM2.resx">
+      <DependentUpon>WEM2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="images\WEM1.resx">
+      <DependentUpon>WEM1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JSHCDKMXB.resx">
+      <DependentUpon>JSHCDKMXB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Level1BOM.resx">
+      <DependentUpon>Level1BOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material.resx">
+      <DependentUpon>Material.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialDayUse\ChooseChanpin.resx">
+      <DependentUpon>ChooseChanpin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialDayUse\MaterialDayUse.resx">
+      <DependentUpon>MaterialDayUse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialDayUse\NodeAdd.resx">
+      <DependentUpon>NodeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialDayUse\YlToChanpin.resx">
+      <DependentUpon>YlToChanpin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_add.resx">
+      <DependentUpon>Material_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_update.resx">
+      <DependentUpon>Material_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoBomGy.resx">
+      <DependentUpon>NoBomGy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutSongHuoDanGDHCDDD2.resx">
+      <DependentUpon>OutSongHuoDanGDHCDDD2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutSongHuoDanGDHCDDD.resx">
+      <DependentUpon>OutSongHuoDanGDHCDDD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutSongHuoDanGDHC.resx">
+      <DependentUpon>OutSongHuoDanGDHC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutOrderGDHC.resx">
+      <DependentUpon>OutOrderGDHC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutOrderHLS.resx">
+      <DependentUpon>OutOrderHLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutOrder.resx">
+      <DependentUpon>OutOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDHCChangeChoose.resx">
+      <DependentUpon>GDHCChangeChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutOrderOrgChoose.resx">
+      <DependentUpon>OutOrderOrgChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartDeleteHLS.resx">
+      <DependentUpon>PartDeleteHLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartDelete.resx">
+      <DependentUpon>PartDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrinterChoose.resx">
+      <DependentUpon>PrinterChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SchoolOrder\LabelPrint.resx">
+      <DependentUpon>LabelPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchoolOrder\PurchaseOrder.resx">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchoolOrder\SaleData.resx">
+      <DependentUpon>SaleData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchoolOrder\SchoolMenu.resx">
+      <DependentUpon>SchoolMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchoolOrder\SchoolOrder.resx">
+      <DependentUpon>SchoolOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCZLDMAIN.resx">
+      <DependentUpon>SCZLDMAIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCZLDUpdate.resx">
+      <DependentUpon>SCZLDUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SheetChoose.resx">
+      <DependentUpon>SheetChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SNCK\SNCK_InspectionReport.resx">
+      <DependentUpon>SNCK_InspectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemSet.resx">
+      <DependentUpon>SystemSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test20HLS.resx">
+      <DependentUpon>Test20HLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test20.resx">
+      <DependentUpon>Test20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test69.resx">
+      <DependentUpon>Test69.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UNUnitCheck.resx">
+      <DependentUpon>UNUnitCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WrkDetail.resx">
+      <DependentUpon>WrkDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YKTSKRECORD.resx">
+      <DependentUpon>YKTSKRECORD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YKTupdate.resx">
+      <DependentUpon>YKTupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WrkWarn.resx">
+      <DependentUpon>WrkWarn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZizhiWarn.resx">
+      <DependentUpon>ZizhiWarn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZKIfaceManage.resx">
+      <DependentUpon>ZKIfaceManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="down.png" />
+    <Content Include="houchu.ico" />
+    <Content Include="Resources\houchulogo.jpg" />
+    <None Include="up.png" />
+    <None Include="Resources\houchulogo1.jpg" />
+    <None Include="Resources\blank.ico" />
+    <None Include="Resources\blank_icon.ico" />
+    <None Include="Resources\houchu.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

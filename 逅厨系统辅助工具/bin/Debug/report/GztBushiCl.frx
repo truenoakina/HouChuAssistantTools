@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="09/26/2023 08:57:30" ReportInfo.Modified="08/28/2024 19:40:03" ReportInfo.CreatorVersion="2021.2.8.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Cell6_MouseEnter(object sender, EventArgs e)
+    {
+      TableCell cell = sender as TableCell;
+      cell.Fill = new GlassFill(Color.DarkOrange, 0.2f, false);
+      cell.Page.Refresh();
+    }
+
+    private void Cell6_MouseLeave(object sender, EventArgs e)
+    {
+      TableCell cell = sender as TableCell;
+      cell.Fill = new SolidFill(Color.PaleGreen);
+      cell.Page.Refresh();
+    }
+
+    private void Cell9_MouseEnter(object sender, EventArgs e)
+    {
+      TableCell cell = sender as TableCell;
+      cell.Fill = new GlassFill(Color.DarkOrange, 0.2f, false);
+      cell.Page.Refresh();
+    }
+
+    private void Cell9_MouseLeave(object sender, EventArgs e)
+    {
+      TableCell cell = sender as TableCell;
+      cell.Fill = new SolidFill(Color.LawnGreen);
+      cell.Page.Refresh();
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5XnTBXmTsnLKKklB4ri4og8Clgm4HDjapF/jgywhgz7wwSiDIg88I0//MlEGLuPh5f2V0y7NklnNAf2VdmU1xSMm1D7YfbWxymkV+vuwH3WVoz3V4f369hs0BPZ4gLNIBK5hujhzIz16r9TKZy0aPjs=">
+      <TableDataSource Name="Table" Alias="GZTBUSHI" DataType="System.Int32" Enabled="true" TableName="各部室产量汇总" SelectCommand="exec gztBuShiQty @fdate">
+        <Column Name="FDATE" DataType="System.DateTime"/>
+        <Column Name="depname" DataType="System.String"/>
+        <Column Name="qty" DataType="System.Decimal"/>
+        <Column Name="je" DataType="System.Decimal"/>
+        <CommandParameter Name="fdate" DataType="31" Expression="[fdate]" DefaultValue="2023-09-25"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" Alias="GZTBUSHIDETAIL" DataType="System.Int32" Enabled="true" SelectCommand="exec gztBuShiQtydetail @fdate">
+        <Column Name="FDATE" DataType="System.DateTime"/>
+        <Column Name="FNAME" DataType="System.String"/>
+        <Column Name="qty" DataType="System.Decimal"/>
+        <Column Name="je" DataType="System.Decimal"/>
+        <Column Name="depname" DataType="System.String"/>
+        <Column Name="FPRICE" DataType="System.Decimal"/>
+        <Column Name="FTAXPRICE" DataType="System.Decimal"/>
+        <CommandParameter Name="fdate" DataType="31" Expression="[fdate]" DefaultValue="2023-09-25"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="SelectedCell" DataType="System.String">
+      <Parameter Name="fdate" DataType="System.DateTime"/>
+      <Parameter Name="depname" DataType="System.String"/>
+    </Parameter>
+    <Parameter Name="fdate" DataType="System.DateTime"/>
+    <Total Name="qtyheji" Expression="[GZTBUSHIDETAIL.qty]" Evaluator="Data2"/>
+    <Total Name="jeheji" Expression="[GZTBUSHIDETAIL.je]" Evaluator="Data2"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="400" PaperHeight="120" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="256" OtherPagesSource="256" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1474.2" Height="37.8">
+      <TextObject Name="Text13" Width="387.45" Height="37.8" Border.Lines="All" Fill.Color="Aqua" Text="日期：[fdate]" VertAlign="Center" Font="微软雅黑, 11pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="1474.2" Height="102.1">
+      <MatrixObject Name="Matrix1" Width="188.5" Height="102.1" FixedRows="2" FixedColumns="1" AutoSize="false" CellsSideBySide="true" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="[GZTBUSHI.FDATE]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[GZTBUSHI.depname]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[GZTBUSHI.qty]"/>
+          <Cell Expression="[GZTBUSHI.je]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="64.69"/>
+        <TableColumn Name="Column2" Width="58.84"/>
+        <TableColumn Name="Column3" Width="64.97"/>
+        <TableRow Name="Row1" Height="20.41">
+          <TableCell Name="Cell1" Border.Lines="All" Fill.Color="Yellow" Text="部室" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Fill.Color="Coral" Hyperlink.Kind="DetailPage" Text="[FDATE]" Format="Date" Format.Format="d" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" ColSpan="2"/>
+          <TableCell Name="Cell7" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="18.19">
+          <TableCell Name="Cell3" Font="宋体, 9pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Fill.Color="PaleGreen" Text="产量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell8" Border.Lines="All" Fill.Color="LawnGreen" Text="销售额" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="37.8">
+          <TableCell Name="Cell5" Border.Lines="All" Fill.Color="DarkOrange" Hyperlink.Kind="DetailPage" Text="[depname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell6" Border.Lines="All" Fill.Color="PaleGreen" Hyperlink.Kind="DetailPage" Hyperlink.DetailPageName="Page2" Hyperlink.ReportParameter="SelectedCell" MouseEnterEvent="Cell6_MouseEnter" MouseLeaveEvent="Cell6_MouseLeave" Text="[qty]" AllowExpressions="false" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Fill.Color="LawnGreen" Hyperlink.Kind="DetailPage" Hyperlink.DetailPageName="Page2" Hyperlink.ReportParameter="SelectedCell" MouseEnterEvent="Cell9_MouseEnter" MouseLeaveEvent="Cell9_MouseLeave" Text="[je]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="25.7">
+          <TableCell Name="Cell10" Border.Lines="All" Fill.Color="Coral" Hyperlink.Kind="DetailPage" Hyperlink.DetailPageName="Page3" Text="合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Fill.Color="SkyBlue" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Fill.Color="DeepSkyBlue" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="147.9" Width="1474.2" Height="18.9"/>
+  </ReportPage>
+  <ReportPage Name="Page2" Visible="false" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="256" OtherPagesSource="256" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle2" Width="756" Height="28.35">
+      <TextObject Name="Text1" Width="141.75" Height="28.35" Fill.Color="Aqua" Text="生产日期:[FormatDateTime([SelectedCell.fdate])]" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="141.75" Width="198.45" Height="28.35" Fill.Color="Aqua" Text="生产部室：[SelectedCell.depname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data2" Top="55.25" Width="756" Height="28.35" DataSource="Table1" Filter="[GZTBUSHIDETAIL.FDATE]==[SelectedCell.fdate]&amp;&amp;[GZTBUSHIDETAIL.depname]==[SelectedCell.depname]">
+      <TextObject Name="Text3" Width="330.75" Height="28.35" Border.Lines="All" Fill.Color="OldLace" Text="[GZTBUSHIDETAIL.FNAME]" VertAlign="Center" WordWrap="false" Font="微软雅黑, 11pt"/>
+      <TextObject Name="Text4" Left="462.05" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="OldLace" Text="[GZTBUSHIDETAIL.qty]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="微软雅黑, 11pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text5" Left="556.55" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="OldLace" Text="[GZTBUSHIDETAIL.je]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="微软雅黑, 11pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text9" Left="330.75" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="OldLace" Text="[GZTBUSHIDETAIL.FPRICE]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="微软雅黑, 11pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text11" Left="387.45" Width="75.6" Height="28.35" Border.Lines="All" Fill.Color="OldLace" Text="[GZTBUSHIDETAIL.FTAXPRICE]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="微软雅黑, 11pt" Trimming="EllipsisCharacter"/>
+      <DataHeaderBand Name="DataHeader1" Top="32.35" Width="756" Height="18.9">
+        <TextObject Name="Text2" Top="-1" Width="330.75" Height="18.9" Border.Lines="All" Fill.Color="Orange" Text="产品名称" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+        <TextObject Name="Text6" Left="462.05" Top="-1" Width="94.5" Height="18.9" Border.Lines="All" Fill.Color="Orange" Text="数量" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+        <TextObject Name="Text8" Left="556.55" Top="-1" Width="94.5" Height="18.9" Border.Lines="All" Fill.Color="Orange" Text="不含税金额" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+        <TextObject Name="Text10" Left="330.75" Top="-1" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Orange" Text="单价" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+        <TextObject Name="Text12" Left="387.45" Top="-1" Width="75.6" Height="18.9" Border.Lines="All" Fill.Color="Orange" Text="含税单价" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="87.6" Width="756" Height="28.35">
+        <TextObject Name="Text15" Left="557.55" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="Gold" Text="[jeheji]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" VertAlign="Center" Font="微软雅黑, 11pt"/>
+        <TextObject Name="Text14" Left="463.05" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="Gold" Text="[qtyheji]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" VertAlign="Center" Font="微软雅黑, 11pt"/>
+        <TextObject Name="Text16" Width="463.05" Height="28.35" Border.Lines="All" Fill.Color="Gold" Text="合计：" HorzAlign="Right" VertAlign="Center" Font="微软雅黑, 11pt"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+</Report>

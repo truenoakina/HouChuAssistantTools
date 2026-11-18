@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/07/2022 14:52:18" ReportInfo.Modified="08/28/2024 19:45:55" ReportInfo.CreatorVersion="2021.2.8.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5XnTBXmTsnLKKklB4ri4og8Clgm4HDjapF/jgywhgz7wwSiDIg88I0//MlEGLuPh5f2V0y7NklnNAf2VdmU1xSMm1D7YfbWxymkV+vuwH3WVoz3V4f369hs0BPZ4gLNIBMVmv8UuuScJAUo3+yMijmw=">
+      <TableDataSource Name="Table" Alias="cgprice" DataType="System.Int32" Enabled="true" SelectCommand="exec cgPriceLine @orgname,@year,@wlfnumber">
+        <Column Name="FNAME" DataType="System.String"/>
+        <Column Name="uname" DataType="System.String"/>
+        <Column Name="jbdj" DataType="System.Decimal"/>
+        <Column Name="year" DataType="System.Int32"/>
+        <Column Name="month" DataType="System.Int32"/>
+        <CommandParameter Name="orgname" DataType="22" Size="20" Expression="[orgname]" DefaultValue="江苏佳之家食品有限公司"/>
+        <CommandParameter Name="year" DataType="8" Expression="[year]" DefaultValue="2022"/>
+        <CommandParameter Name="wlfnumber" DataType="22" Expression="[wlfnumber]" DefaultValue="1010101015a"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="orgname" DataType="System.String"/>
+    <Parameter Name="year" DataType="System.Int16"/>
+    <Parameter Name="wlfnumber" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" FirstPageSource="15" OtherPagesSource="15" Watermark.Font="宋体, 60pt">
+    <DataBand Name="Data1" Width="1047.06" Height="529.2">
+      <MSChartObject Name="MSChart1" Left="9.45" Top="9.45" Width="1039.5" Height="519.75" DataSource="Table" AutoSeriesColumn="[cgprice.year]" AutoSeriesColor="" ChartData="PENoYXJ0IEJvcmRlcmxpbmVDb2xvcj0iRGFya0dyYXkiIEJvcmRlcmxpbmVXaWR0aD0iMiIgQm9yZGVybGluZURhc2hTdHlsZT0iU29saWQiPg0KICA8U2VyaWVzPg0KICAgIDxTZXJpZXMgTmFtZT0iU2VyaWVzMSIgTGVnZW5kPSJEZWZhdWx0IiBYVmFsdWVUeXBlPSJTdHJpbmciIFlWYWx1ZVR5cGU9IkRvdWJsZSIgQ2hhcnRBcmVhPSJEZWZhdWx0IiBMYWJlbD0iI1ZBTFkiIEZvbnQ9Ik1pY3Jvc29mdCBTYW5zIFNlcmlmLCA3LjVwdCwgR2RpQ2hhclNldD0wIiBNYXJrZXJTdHlsZT0iU3F1YXJlIiBNYXJrZXJTaXplPSI2Ij4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjMiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIyIiBBeGlzTGFiZWw9IkMiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iNCIgQXhpc0xhYmVsPSJEIiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogIDwvU2VyaWVzPg0KICA8TGVnZW5kcz4NCiAgICA8TGVnZW5kIE5hbWU9IkRlZmF1bHQiPg0KICAgIDwvTGVnZW5kPg0KICA8L0xlZ2VuZHM+DQogIDxUaXRsZXM+DQogICAgPFRpdGxlIE5hbWU9IlRpdGxlMSIgVmlzaWJsZT0iRmFsc2UiPg0KICAgIDwvVGl0bGU+DQogIDwvVGl0bGVzPg0KICA8Q2hhcnRBcmVhcz4NCiAgICA8Q2hhcnRBcmVhIE5hbWU9IkRlZmF1bHQiPg0KICAgICAgPEF4aXNZIFRpdGxlPSLljZXku7ciPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNZPg0KICAgICAgPEF4aXNYIFRpdGxlPSLmnIjku70iPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNYPg0KICAgICAgPEF4aXNYMj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgPC9BeGlzWDI+DQogICAgICA8QXhpc1kyPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICA8L0F4aXNZMj4NCiAgICA8L0NoYXJ0QXJlYT4NCiAgPC9DaGFydEFyZWFzPg0KICA8Qm9yZGVyU2tpbiBTa2luU3R5bGU9IkVtYm9zcyIgLz4NCjwvQ2hhcnQ+">
+        <MSChartSeries Name="Series1" XValue="[cgprice.month]" YValue1="[cgprice.jbdj]"/>
+      </MSChartObject>
+    </DataBand>
+  </ReportPage>
+</Report>

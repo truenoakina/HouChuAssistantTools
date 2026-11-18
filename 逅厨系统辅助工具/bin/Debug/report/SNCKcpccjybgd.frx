@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/19/2026 14:18:12" ReportInfo.Modified="10/23/2026 17:11:12" ReportInfo.CreatorVersion="2021.2.8.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5XnTBXmTsnLKKklB4ri4og8Clgm4HDjapF/jgywhgz7wwSiDIg88I0//MlEGLuPh5Tq9ut83AVmbpXwZExFhNNpYngM2bGUAOiogleWyp4L0rlEU66dBjM18N8LMp0HiGw==">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="select GETDATE()">
+        <Column Name="Column1" DataType="System.DateTime"/>
+        <CommandParameter Name="fdate" DataType="22" Expression="[fdate]" DefaultValue="2026-10-19"/>
+        <CommandParameter Name="fname" DataType="22" Expression="[fname]" DefaultValue="MM黄油牛角"/>
+        <CommandParameter Name="fggxh" DataType="22" Expression="[fggxh]" DefaultValue="18个/盒"/>
+        <CommandParameter Name="fqty" DataType="22" Expression="[fqty]" DefaultValue="94"/>
+        <CommandParameter Name="fcyqty" DataType="22" Expression="[fcyqty]" DefaultValue="5"/>
+        <CommandParameter Name="jyy" DataType="22" Expression="[jyy]" DefaultValue="陈馨"/>
+        <CommandParameter Name="shy" DataType="22" Expression="[shy]" DefaultValue="沈祥华"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="fdate" DataType="System.String" Description="日期"/>
+    <Parameter Name="fname" DataType="System.String" Description="商品名称"/>
+    <Parameter Name="fggxh" DataType="System.String" Description="规格型号"/>
+    <Parameter Name="fqty" DataType="System.String" Description="生产量"/>
+    <Parameter Name="fcyqty" DataType="System.String" Description="抽样量"/>
+    <Parameter Name="jyy" DataType="System.String" Description="检验员"/>
+    <Parameter Name="shy" DataType="System.String" Description="审核员"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="5" RightMargin="5" BottomMargin="50" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="756" Height="73.71">
+      <TextObject Name="Text4" Left="170.1" Top="9.45" Width="359.1" Height="28.35" Text="江阴华联谷之田食品科技有限公司" HorzAlign="Center" VertAlign="Center" Font="宋体, 16pt, style=Bold"/>
+      <TextObject Name="Text5" Left="245.7" Top="32.13" Width="207.9" Height="28.35" Text="成品出厂检验报告单" HorzAlign="Center" VertAlign="Center" Font="宋体, 15pt, style=Bold"/>
+      <TextObject Name="Text6" Left="481.95" Top="54.81" Width="170.1" Height="18.9" Text="文件编号:HC11-4-122-01" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="76.91" Width="756" Height="670.95" CanGrow="true" CanShrink="true">
+      <TableObject Name="Table1" Width="737.1" Height="604.8" Border.Lines="All">
+        <TableColumn Name="Column1" Width="47.25"/>
+        <TableColumn Name="Column2" Width="94.5"/>
+        <TableColumn Name="Column3" Width="151.2"/>
+        <TableColumn Name="Column4" Width="122.85"/>
+        <TableColumn Name="Column5" Width="94.5"/>
+        <TableColumn Name="Column6" Width="122.85"/>
+        <TableColumn Name="Column7" Width="103.95"/>
+        <TableRow Name="Row1" Height="75.6">
+          <TableCell Name="Cell1" Border.Lines="All" Text="产品名称" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="2"/>
+          <TableCell Name="Cell2" Font="宋体, 9pt"/>
+          <TableCell Name="Cell3" Border.Lines="All" Text="[fname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="规格型号" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="[fggxh]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Text="检验日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell42" Border.Lines="All" Text="[fdate]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="75.6">
+          <TableCell Name="Cell6" Border.Lines="All" Text="生产日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="2"/>
+          <TableCell Name="Cell7" Font="宋体, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Text="[fdate]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="生产量(盒/袋)" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="[fqty]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell43" Border.Lines="All" Text="抽样量(盒/袋)" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell44" Border.Lines="All" Text="[fcyqty]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="75.6">
+          <TableCell Name="Cell11" Border.Lines="All" Text="检验依据" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="2"/>
+          <TableCell Name="Cell12" Font="宋体, 9pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="GB 7099" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="5"/>
+          <TableCell Name="Cell14" Font="宋体, 9pt"/>
+          <TableCell Name="Cell15" Font="宋体, 9pt"/>
+          <TableCell Name="Cell45" Font="宋体, 9pt"/>
+          <TableCell Name="Cell46" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="75.6">
+          <TableCell Name="Cell16" Border.Lines="All" Text="检验项目" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="2"/>
+          <TableCell Name="Cell17" Font="宋体, 9pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Text="质量要求" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="3"/>
+          <TableCell Name="Cell19" Font="宋体, 9pt"/>
+          <TableCell Name="Cell20" Font="宋体, 9pt"/>
+          <TableCell Name="Cell47" Border.Lines="All" Text="检验结果" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell48" Border.Lines="All" Text="判定" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="75.6">
+          <TableCell Name="Cell21" Border.Lines="All" Text="感官" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" RowSpan="3"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="色泽" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Text="具有产品应有的色泽" VertAlign="Center" Font="宋体, 12pt" ColSpan="3"/>
+          <TableCell Name="Cell24" Font="宋体, 9pt"/>
+          <TableCell Name="Cell25" Font="宋体, 9pt"/>
+          <TableCell Name="Cell49" Border.Lines="All" Text="符合" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell50" Border.Lines="All" Text="合格" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="75.6">
+          <TableCell Name="Cell26" Font="宋体, 9pt"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="滋味、气味" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell28" Border.Lines="All" Text="具有产品应有的气味和滋味，无异味" VertAlign="Center" Font="宋体, 12pt" ColSpan="3"/>
+          <TableCell Name="Cell29" Font="宋体, 9pt"/>
+          <TableCell Name="Cell30" Font="宋体, 9pt"/>
+          <TableCell Name="Cell51" Border.Lines="All" Text="符合" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell52" Border.Lines="All" Text="合格" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="75.6">
+          <TableCell Name="Cell31" Font="宋体, 9pt"/>
+          <TableCell Name="Cell32" Border.Lines="All" Text="状态" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Text="无霉变、无生虫及其他正常视力可见的外来异物" VertAlign="Center" Font="宋体, 12pt" ColSpan="3"/>
+          <TableCell Name="Cell34" Font="宋体, 9pt"/>
+          <TableCell Name="Cell35" Font="宋体, 9pt"/>
+          <TableCell Name="Cell53" Border.Lines="All" Text="符合" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+          <TableCell Name="Cell54" Border.Lines="All" Text="合格" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="75.6">
+          <TableCell Name="Cell36" Border.Lines="All" Text="检验结论" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="2"/>
+          <TableCell Name="Cell37" Font="宋体, 9pt"/>
+          <TableCell Name="Cell38" Border.Lines="All" Text="合格             不合格" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt" ColSpan="5">
+            <CheckBoxObject Name="CheckBox1" Left="175.77" Top="26.46" Width="18.9" Height="18.9" Border.Lines="All"/>
+            <CheckBoxObject Name="CheckBox2" Left="311.85" Top="26.46" Width="18.9" Height="18.9" Border.Lines="All" Checked="false"/>
+          </TableCell>
+          <TableCell Name="Cell39" Font="宋体, 9pt"/>
+          <TableCell Name="Cell40" Font="宋体, 9pt"/>
+          <TableCell Name="Cell55" Font="宋体, 9pt"/>
+          <TableCell Name="Cell56" Font="宋体, 9pt"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text7" Left="28.35" Top="633.15" Width="141.75" Height="26.46" Text="检验员:[jyy]" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+      <TextObject Name="Text8" Left="274.05" Top="633.15" Width="141.75" Height="26.46" Text="审核员:[shy]" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+      <TextObject Name="Text9" Left="481.95" Top="633.15" Width="198.45" Height="26.46" Text="报告日期:[fdate]" HorzAlign="Center" VertAlign="Center" Font="宋体, 12pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

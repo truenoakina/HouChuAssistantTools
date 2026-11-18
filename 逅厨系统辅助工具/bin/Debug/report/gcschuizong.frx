@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="09/19/2023 16:57:28" ReportInfo.Modified="08/28/2024 19:43:21" ReportInfo.CreatorVersion="2021.2.8.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5XnTBXmTsnLKKklB4ri4og8Clgm4HDjapF/jgywhgz7wwSiDIg88I0//MlEGLuPh5f2V0y7NklnNAf2VdmU1xSMm1D7YfbWxymkV+vuwH3WVoz3V4f369hs0BPZ4gLNIBIX90u17XBiflYk/CznSsXk=">
+      <TableDataSource Name="Table" Alias="gcsalehuizong" DataType="System.Int32" Enabled="true" SelectCommand="exec gcsalehuizong @scorg,@fdate">
+        <Column Name="fdate" DataType="System.String"/>
+        <Column Name="cus" DataType="System.String"/>
+        <Column Name="qty" DataType="System.Decimal"/>
+        <Column Name="je" DataType="System.Decimal"/>
+        <Column Name="hsje" DataType="System.Decimal"/>
+        <CommandParameter Name="scorg" DataType="22" Expression="[scorg]" DefaultValue="江阴华联谷之田食品科技有限公司"/>
+        <CommandParameter Name="fdate" DataType="31" Expression="[fdate]" DefaultValue="2023-08-19"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="scorg" DataType="System.String"/>
+    <Parameter Name="fdate" DataType="System.DateTime"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="600" PaperHeight="200" LeftMargin="3" TopMargin="3" RightMargin="3" BottomMargin="3" FirstPageSource="256" OtherPagesSource="256" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="2245.32" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Fill.Color="White" Text="生产组织：[scorg]    日期：[fdate]" VertAlign="Center" Font="微软雅黑, 12pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="2245.32" Height="127.33">
+      <MatrixObject Name="Matrix1" Width="187.26" Height="127.33" FixedRows="1" FixedColumns="2" DataSource="Table" Style="BlueOrange">
+        <MatrixColumns>
+          <Header Expression="[gcsalehuizong.fdate]"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[gcsalehuizong.cus]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[gcsalehuizong.qty]"/>
+          <Cell Expression="[gcsalehuizong.je]"/>
+          <Cell Expression="[gcsalehuizong.hsje]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="41.11" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="58.43" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="53.95" AutoSize="true"/>
+        <TableColumn Name="Column4" Width="33.77" AutoSize="true"/>
+        <TableRow Name="Row1" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="客户" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell2" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[fdate]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All" Border.Color="White" Fill.Color="255, 128, 0" Text="合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell3" Border.Lines="All" Border.Color="White" Fill.Color="151, 189, 253" Text="[cus]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell4" Border.Lines="All" Border.Color="White" Fill.Color="Cornsilk" Text="数量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell6" Border.Lines="All" Border.Color="White" Fill.Color="Cornsilk" Text="[qty]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Border.Color="White" Fill.Color="Cornsilk" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell7" Font="宋体, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Border.Color="White" Fill.Color="Gold" Text="金额" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Border.Color="White" Fill.Color="Gold" Text="[je]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Border.Color="White" Fill.Color="Gold" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell16" Font="宋体, 9pt"/>
+          <TableCell Name="Cell17" Border.Lines="All" Border.Color="White" Fill.Color="Khaki" Text="含税金额" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Border.Color="White" Fill.Color="Khaki" Text="[hsje]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Border.Color="White" Fill.Color="Khaki" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell20" Border.Lines="All" Border.Color="White" Fill.Color="DodgerBlue" Text="合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell21" Border.Lines="All" Border.Color="White" Fill.Color="Cornsilk" Text="数量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell22" Border.Lines="All" Border.Color="White" Fill.Color="Cornsilk" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Border.Color="White" Fill.Color="Cornsilk" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell24" Font="宋体, 9pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Border.Color="White" Fill.Color="Gold" Text="金额" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell26" Border.Lines="All" Border.Color="White" Fill.Color="Gold" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell27" Border.Lines="All" Border.Color="White" Fill.Color="Gold" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell28" Font="宋体, 9pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Border.Color="White" Fill.Color="Khaki" Text="含税金额" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell30" Border.Lines="All" Border.Color="White" Fill.Color="Khaki" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell31" Border.Lines="All" Border.Color="White" Fill.Color="Khaki" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+  </ReportPage>
+</Report>

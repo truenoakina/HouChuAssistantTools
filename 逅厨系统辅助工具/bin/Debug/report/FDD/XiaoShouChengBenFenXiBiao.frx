@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="05/19/2026 16:32:06" ReportInfo.Modified="06/23/2026 09:09:03" ReportInfo.CreatorVersion="2021.2.8.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Table1_AfterData(object sender, EventArgs e)
+    {  
+      //直接材料占比
+       Cell78.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell23.Value)/Convert.ToDecimal(Cell13.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;  
+       Cell79.Text=Convert.ToDecimal(Cell14.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell24.Value)/Convert.ToDecimal(Cell14.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+       Cell80.Text=Convert.ToDecimal(Cell15.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell25.Value)/Convert.ToDecimal(Cell15.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+       Cell81.Text=Convert.ToDecimal(Cell46.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell66.Value)/Convert.ToDecimal(Cell46.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+       Cell82.Text=Convert.ToDecimal(Cell47.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell67.Value)/Convert.ToDecimal(Cell47.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+       Cell83.Text=Convert.ToDecimal(Cell48.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell68.Value)/Convert.ToDecimal(Cell48.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      //人工占比
+      Cell108.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell93.Value)/Convert.ToDecimal(Cell13.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;  
+      Cell109.Text=Convert.ToDecimal(Cell14.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell94.Value)/Convert.ToDecimal(Cell14.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell110.Text=Convert.ToDecimal(Cell15.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell95.Value)/Convert.ToDecimal(Cell15.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell111.Text=Convert.ToDecimal(Cell46.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell96.Value)/Convert.ToDecimal(Cell46.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell112.Text=Convert.ToDecimal(Cell47.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell97.Value)/Convert.ToDecimal(Cell47.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell113.Text=Convert.ToDecimal(Cell48.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell98.Value)/Convert.ToDecimal(Cell48.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+    
+      //能耗占比
+      Cell138.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell123.Value)/Convert.ToDecimal(Cell13.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;  
+      Cell139.Text=Convert.ToDecimal(Cell14.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell124.Value)/Convert.ToDecimal(Cell14.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell140.Text=Convert.ToDecimal(Cell15.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell125.Value)/Convert.ToDecimal(Cell15.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell141.Text=Convert.ToDecimal(Cell46.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell126.Value)/Convert.ToDecimal(Cell46.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell142.Text=Convert.ToDecimal(Cell47.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell127.Value)/Convert.ToDecimal(Cell47.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      Cell143.Text=Convert.ToDecimal(Cell48.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell128.Value)/Convert.ToDecimal(Cell48.Value))*100,2).ToString()+&quot;%&quot;:&quot; &quot;;
+      //用量
+      Cell228.Text=(Convert.ToDecimal(Cell230.Value) + Convert.ToDecimal(Cell232.Value)).ToString(); //总水
+      Cell229.Text=(Convert.ToDecimal(Cell231.Value) + Convert.ToDecimal(Cell233.Value)).ToString(); //总水累计
+      Cell243.Text=(Convert.ToDecimal(Cell245.Value) + Convert.ToDecimal(Cell247.Value)).ToString(); //总电
+      Cell244.Text=(Convert.ToDecimal(Cell246.Value) + Convert.ToDecimal(Cell248.Value)).ToString(); //总电累计
+      Cell273.Text=(Convert.ToDecimal(Cell275.Value) + Convert.ToDecimal(Cell277.Value)).ToString(); //总气
+      Cell274.Text=(Convert.ToDecimal(Cell276.Value) + Convert.ToDecimal(Cell278.Value)).ToString(); //总气累计
+      Cell288.Text=(Convert.ToDecimal(Cell290.Value) + Convert.ToDecimal(Cell292.Value)).ToString(); //总汽
+      Cell289.Text=(Convert.ToDecimal(Cell291.Value) + Convert.ToDecimal(Cell293.Value)).ToString(); //总汽累计
+      //气汽用量
+      Cell260.Text=(Convert.ToDecimal(Cell275.Value) + Convert.ToDecimal(Cell290.Value)).ToString();//逅厨
+      Cell261.Text=(Convert.ToDecimal(Cell276.Value) + Convert.ToDecimal(Cell291.Value)).ToString();//逅厨累计
+      Cell262.Text=(Convert.ToDecimal(Cell277.Value) + Convert.ToDecimal(Cell292.Value)).ToString();//一鸣
+      Cell263.Text=(Convert.ToDecimal(Cell278.Value) + Convert.ToDecimal(Cell293.Value)).ToString();//一鸣累计
+      Cell258.Text=(Convert.ToDecimal(Cell275.Value) + Convert.ToDecimal(Cell277.Value)+Convert.ToDecimal(Cell290.Value) + Convert.ToDecimal(Cell292.Value)).ToString(); //总
+      Cell259.Text=(Convert.ToDecimal(Cell276.Value) + Convert.ToDecimal(Cell278.Value)+Convert.ToDecimal(Cell291.Value) + Convert.ToDecimal(Cell293.Value)).ToString();//总累计
+      
+      //利益项
+      Cell336.Text=(Convert.ToInt64(Cell13.Value) - Convert.ToInt64(Cell23.Value)-Convert.ToInt64(Cell93.Value) - Convert.ToInt64(Cell123.Value)).ToString(); //总预估
+      Cell345.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell13.Value) - Convert.ToDecimal(Cell23.Value)-Convert.ToDecimal(Cell93.Value) - Convert.ToDecimal(Cell123.Value))/Convert.ToDecimal(Cell13.Value)*100,2).ToString()+&quot;%&quot;:&quot; &quot;; //总毛利
+      Cell337.Text=(Convert.ToInt64(Cell14.Value) - Convert.ToInt64(Cell24.Value)-Convert.ToInt64(Cell94.Value) - Convert.ToInt64(Cell124.Value)).ToString(); //总预估累计
+      Cell346.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell14.Value) - Convert.ToDecimal(Cell24.Value)-Convert.ToDecimal(Cell94.Value) - Convert.ToDecimal(Cell124.Value))/Convert.ToDecimal(Cell14.Value)*100,2).ToString()+&quot;%&quot;:&quot; &quot;; //总毛利累计
+      Cell338.Text=(Convert.ToInt64(Cell15.Value) - Convert.ToInt64(Cell25.Value)-Convert.ToInt64(Cell95.Value) - Convert.ToInt64(Cell125.Value)).ToString(); //逅厨预估
+      Cell347.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell15.Value) - Convert.ToDecimal(Cell25.Value)-Convert.ToDecimal(Cell95.Value) - Convert.ToDecimal(Cell125.Value))/Convert.ToDecimal(Cell15.Value)*100,2).ToString()+&quot;%&quot;:&quot; &quot;; //逅厨毛利
+      Cell339.Text=(Convert.ToInt64(Cell46.Value) - Convert.ToInt64(Cell66.Value)-Convert.ToInt64(Cell96.Value) - Convert.ToInt64(Cell126.Value)).ToString(); //逅厨预估累计
+      Cell348.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell46.Value) - Convert.ToDecimal(Cell66.Value)-Convert.ToDecimal(Cell96.Value) - Convert.ToDecimal(Cell126.Value))/Convert.ToDecimal(Cell46.Value)*100,2).ToString()+&quot;%&quot;:&quot; &quot;; //逅厨毛利累计
+      Cell340.Text=(Convert.ToInt64(Cell47.Value) - Convert.ToInt64(Cell67.Value)-Convert.ToInt64(Cell97.Value) - Convert.ToInt64(Cell127.Value)).ToString(); //一鸣预估
+      Cell349.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell47.Value) - Convert.ToDecimal(Cell67.Value)-Convert.ToDecimal(Cell97.Value) - Convert.ToDecimal(Cell127.Value))/Convert.ToDecimal(Cell47.Value)*100,2).ToString()+&quot;%&quot;:&quot; &quot;; //一鸣毛利
+      Cell341.Text=(Convert.ToInt64(Cell48.Value) - Convert.ToInt64(Cell68.Value)-Convert.ToInt64(Cell98.Value) - Convert.ToInt64(Cell128.Value)).ToString(); //一鸣预估累计 
+      Cell350.Text=Convert.ToDecimal(Cell13.Value)&gt;0?FormatNumber((Convert.ToDecimal(Cell48.Value) - Convert.ToDecimal(Cell68.Value)-Convert.ToDecimal(Cell98.Value) - Convert.ToDecimal(Cell128.Value))/Convert.ToDecimal(Cell48.Value)*100,2).ToString()+&quot;%&quot;:&quot; &quot;; //一鸣毛利累计
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="costdata" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5XnTBXmTsnLKKklB4ri4og8Clgm4HDjapF/jgywhgz7wwSiDIg88I0//MlEGLuPh5f2V0y7NklnNAf2VdmU1xSMm1D7YfbWxymkV+vuwH3WVoz3V4f369hs0BPZ4gLNIBEbDjcD826dR2aM2ibVLGJY=">
+      <TableDataSource Name="Table2" Alias="costdata2" DataType="System.Int32" Enabled="true" SelectCommand="exec FDD_YuanLiaoCB @factory,@fdate">
+        <Column Name="罗森逅厨成本" DataType="System.Decimal"/>
+        <Column Name="一鸣成本" DataType="System.Decimal"/>
+        <Column Name="总成本" DataType="System.Decimal"/>
+        <Column Name="罗森逅厨累计成本" DataType="System.Decimal"/>
+        <Column Name="一鸣累计成本" DataType="System.Decimal"/>
+        <Column Name="总累计成本" DataType="System.Decimal"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="fdate" DataType="22" Expression="[fdate]" DefaultValue="2026-06-23"/>
+      </TableDataSource>
+      <TableDataSource Name="Table" Alias="saledata" DataType="System.Int32" Enabled="true" SelectCommand="exec FDD_SaleData @factory,@fdate">
+        <Column Name="日期" DataType="System.DateTime"/>
+        <Column Name="罗森逅厨销售数量" DataType="System.Decimal"/>
+        <Column Name="罗森逅厨累计销售数量" DataType="System.Decimal"/>
+        <Column Name="罗森逅厨销售金额" DataType="System.Decimal"/>
+        <Column Name="罗森逅厨累计销售金额" DataType="System.Decimal"/>
+        <Column Name="一鸣销售数量" DataType="System.Decimal"/>
+        <Column Name="一鸣累计销售数量" DataType="System.Decimal"/>
+        <Column Name="一鸣销售金额" DataType="System.Decimal"/>
+        <Column Name="一鸣累计销售金额" DataType="System.Decimal"/>
+        <Column Name="销售数量" DataType="System.Decimal"/>
+        <Column Name="累计销售数量" DataType="System.Decimal"/>
+        <Column Name="销售金额" DataType="System.Decimal"/>
+        <Column Name="累计销售金额" DataType="System.Decimal"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="fdate" DataType="22" Expression="[fdate]" DefaultValue="2026-06-23"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5dY2MEkk4581WyvFOgNHCxB5dIx1cSh0Bv4OOmdMtiTaCHD6eWWr5HA91ApAVMLY4K6P/ZWy8WVvxsn4e4XnmWaoUUtvcQvmgj5eVWxn7fa+GyKSPW1izwzFNWeXRj8KVw==">
+      <TableDataSource Name="Table3" Alias="energydata" DataType="System.Int32" Enabled="true" SelectCommand="exec FDD_EnergyHZ @factory,@fdate">
+        <Column Name="江苏逅厨能耗费用" DataType="System.Decimal"/>
+        <Column Name="一鸣能耗费用" DataType="System.Decimal"/>
+        <Column Name="江苏逅厨累计能耗费用" DataType="System.Decimal"/>
+        <Column Name="一鸣累计能耗费用" DataType="System.Decimal"/>
+        <Column Name="总能耗费用" DataType="System.Decimal"/>
+        <Column Name="总累计能耗费用" DataType="System.Decimal"/>
+        <Column Name="逅厨水" DataType="System.Decimal"/>
+        <Column Name="逅厨电" DataType="System.Decimal"/>
+        <Column Name="逅厨气" DataType="System.Decimal"/>
+        <Column Name="逅厨汽" DataType="System.Decimal"/>
+        <Column Name="一鸣水" DataType="System.Int32"/>
+        <Column Name="一鸣电" DataType="System.Int32"/>
+        <Column Name="一鸣气" DataType="System.Int32"/>
+        <Column Name="一鸣汽" DataType="System.Int32"/>
+        <Column Name="逅厨累计水" DataType="System.Decimal"/>
+        <Column Name="逅厨累计电" DataType="System.Decimal"/>
+        <Column Name="逅厨累计气" DataType="System.Decimal"/>
+        <Column Name="逅厨累计汽" DataType="System.Decimal"/>
+        <Column Name="一鸣累计水" DataType="System.Int32"/>
+        <Column Name="一鸣累计电" DataType="System.Int32"/>
+        <Column Name="一鸣累计气" DataType="System.Int32"/>
+        <Column Name="一鸣累计汽" DataType="System.Int32"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="fdate" DataType="22" Expression="[fdate]" DefaultValue="2026-06-23"/>
+      </TableDataSource>
+      <TableDataSource Name="Table4" Alias="rengongData" DataType="System.Int32" Enabled="true" SelectCommand="exec FDD_RenGongData @factory,@fdate">
+        <Column Name="正式工工时" DataType="System.Decimal"/>
+        <Column Name="总出勤人数" DataType="System.Int32"/>
+        <Column Name="一鸣出勤人数" DataType="System.Int32"/>
+        <Column Name="罗森逅厨出勤人数" DataType="System.Int32"/>
+        <Column Name="平均工时" DataType="System.Decimal"/>
+        <Column Name="累计正式工工时" DataType="System.Decimal"/>
+        <Column Name="累计总出勤人数" DataType="System.Int32"/>
+        <Column Name="累计平均工时" DataType="System.Decimal"/>
+        <Column Name="临时工工时" DataType="System.Decimal"/>
+        <Column Name="累计临时工工时" DataType="System.Decimal"/>
+        <Column Name="累计一鸣出勤人数" DataType="System.Int32"/>
+        <Column Name="累计罗森逅厨出勤人数" DataType="System.Int32"/>
+        <Column Name="总工时成本" DataType="System.Decimal"/>
+        <Column Name="一鸣工时成本" DataType="System.Decimal"/>
+        <Column Name="罗森逅厨工时成本" DataType="System.Decimal"/>
+        <Column Name="累计总工时成本" DataType="System.Decimal"/>
+        <Column Name="累计一鸣工时成本" DataType="System.Decimal"/>
+        <Column Name="累计罗森逅厨工时成本" DataType="System.Decimal"/>
+        <Column Name="fdate" DataType="System.DateTime"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="fdate" DataType="22" Expression="[fdate]" DefaultValue="2026-06-23"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="factory" DataType="System.String"/>
+    <Parameter Name="fdate" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="350" PaperHeight="210" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="1247.4" Height="37.8">
+      <TextObject Name="Text1" Left="217.35" Top="9.45" Width="406.35" Height="28.35" Text="江阴工厂销售成本分析表" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 20pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41" Width="1247.4" Height="604.8">
+      <TableObject Name="Table1" Left="9.45" Width="869.4" Height="604.8" AfterDataEvent="Table1_AfterData">
+        <TableColumn Name="Column1" Width="113.4"/>
+        <TableColumn Name="Column2" Width="103.95"/>
+        <TableColumn Name="Column3" Width="85.05"/>
+        <TableColumn Name="Column4" Width="85.05"/>
+        <TableColumn Name="Column5" Width="85.05"/>
+        <TableColumn Name="Column6" Width="85.05"/>
+        <TableColumn Name="Column7" Width="85.05"/>
+        <TableColumn Name="Column8" Width="85.05"/>
+        <TableColumn Name="Column9" Width="141.75"/>
+        <TableRow Name="Row1" Height="26.46">
+          <TableCell Name="Cell1" Border.Lines="All" Text="项目" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="内容" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell3" Border.Lines="All" Fill.Color="255, 192, 128" Text="[IIf([factory]==&quot;佳之家&quot;,&quot;鲜食&quot;,&quot;烘焙&quot;)]" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell4" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Fill.Color="255, 192, 128" Text="[IIf([factory]==&quot;佳之家&quot;,&quot;鲜食&quot;,&quot;烘焙&quot;)](罗森+逅厨)" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell26" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell27" Border.Lines="All" Fill.Color="255, 192, 128" Text="[IIf([factory]==&quot;佳之家&quot;,&quot;鲜食&quot;,&quot;烘焙&quot;)](一鸣)" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" ColSpan="2"/>
+          <TableCell Name="Cell28" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Text="备注（异常情况说明）" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="2"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="26.46">
+          <TableCell Name="Cell6" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Fill.Color="255, 192, 128" Text="[Month(ToDateTime([fdate]))]月[Day(ToDateTime([fdate]))]日" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" Fill.Color="255, 192, 128" Text="1-[Day(ToDateTime([fdate]))]号累计" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TableCell Name="Cell10" Border.Lines="All" Fill.Color="255, 192, 128" Text="[Month(ToDateTime([fdate]))]月[Day(ToDateTime([fdate]))]日" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TableCell Name="Cell36" Border.Lines="All" Fill.Color="255, 192, 128" Text="1-[Day(ToDateTime([fdate]))]号累计" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TableCell Name="Cell37" Border.Lines="All" Fill.Color="255, 192, 128" Text="[Month(ToDateTime([fdate]))]月[Day(ToDateTime([fdate]))]日" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TableCell Name="Cell38" Border.Lines="All" Fill.Color="255, 192, 128" Text="1-[Day(ToDateTime([fdate]))]号累计" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold"/>
+          <TableCell Name="Cell39" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="26.46">
+          <TableCell Name="Cell11" Border.Lines="All" Text="销售项" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell12" Border.Lines="All" Text="销售额" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell13" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.销售金额]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Formats>
+              <GeneralFormat/>
+              <GeneralFormat/>
+            </Formats>
+          </TableCell>
+          <TableCell Name="Cell14" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.累计销售金额]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.罗森逅厨销售金额]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell46" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.罗森逅厨累计销售金额]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell47" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.一鸣销售金额]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell48" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.一鸣累计销售金额]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell49" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="8"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="26.46">
+          <TableCell Name="Cell16" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell17" Border.Lines="All" Text="产量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell18" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.销售数量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.累计销售数量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell20" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.罗森逅厨销售数量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell56" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.罗森逅厨累计销售数量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell57" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.一鸣销售数量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell58" Border.Lines="All" Fill.Color="255, 192, 128" Text="[saledata.一鸣累计销售数量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell59" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="26.46">
+          <TableCell Name="Cell21" Border.Lines="All" Text="成本项" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="6"/>
+          <TableCell Name="Cell22" Border.Lines="All" Text="直接材料" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell23" Border.Lines="All" Fill.Color="255, 192, 128" Text="[costdata2.总成本]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Fill.Color="255, 192, 128" Text="[costdata2.总累计成本]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Fill.Color="255, 192, 128" Text="[costdata2.罗森逅厨成本]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell66" Border.Lines="All" Fill.Color="255, 192, 128" Text="[costdata2.罗森逅厨累计成本]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell67" Border.Lines="All" Fill.Color="255, 192, 128" Text="[costdata2.一鸣成本]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell68" Border.Lines="All" Fill.Color="255, 192, 128" Text="[costdata2.一鸣累计成本]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell69" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="28.35">
+          <TableCell Name="Cell76" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell77" Border.Lines="All" Text="直接材料占比" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell78" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell79" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell80" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell81" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell82" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell83" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell84" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="28.35">
+          <TableCell Name="Cell91" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell92" Border.Lines="All" Text="直接人工" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell93" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.总工时成本]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell94" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计总工时成本]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell95" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.罗森逅厨工时成本]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell96" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计罗森逅厨工时成本]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell97" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.一鸣工时成本]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell98" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计一鸣工时成本]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell99" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="28.35">
+          <TableCell Name="Cell106" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell107" Border.Lines="All" Text="直接人工占比" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell108" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell109" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell110" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell111" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell112" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell113" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell114" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="28.35">
+          <TableCell Name="Cell121" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell122" Border.Lines="All" Text="能耗费用" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell123" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.总能耗费用]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell124" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.总累计能耗费用]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell125" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.江苏逅厨能耗费用]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell126" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.江苏逅厨累计能耗费用]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell127" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣能耗费用]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell128" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣累计能耗费用]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell129" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="28.35">
+          <TableCell Name="Cell136" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell137" Border.Lines="All" Text="能耗费用占比" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell138" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell139" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell140" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell141" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell142" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell143" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell144" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row24" Height="28.35">
+          <TableCell Name="Cell334" Border.Lines="All" Text="利益项" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell335" Border.Lines="All" Text="边际贡献预估" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell336" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell337" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell338" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell339" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell340" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell341" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell342" Border.Lines="All" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row25" Height="28.35">
+          <TableCell Name="Cell343" Border.Lines="All" Font="宋体, 9pt"/>
+          <TableCell Name="Cell344" Border.Lines="All" Text="毛利率" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell345" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell346" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell347" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell348" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell349" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell350" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell351" Border.Lines="All" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row11">
+          <TableCell Name="Cell151" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell152" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell153" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell154" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell155" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell156" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell157" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell158" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell159" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row12" Height="28.35">
+          <TableCell Name="Cell166" Border.Lines="All" Text="人工明细" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="4"/>
+          <TableCell Name="Cell167" Border.Lines="All" Text="当日出勤人数" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell168" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.总出勤人数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell169" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计总出勤人数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell170" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.罗森逅厨出勤人数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell171" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计罗森逅厨出勤人数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell172" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.一鸣出勤人数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell173" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计一鸣出勤人数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell174" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="9"/>
+        </TableRow>
+        <TableRow Name="Row13" Height="28.35">
+          <TableCell Name="Cell181" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell182" Border.Lines="All" Text="正式工工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell183" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.正式工工时]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell184" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计正式工工时]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell185" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell186" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell187" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell188" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell189" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row23" Height="28.35">
+          <TableCell Name="Cell325" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell326" Border.Lines="All" Text="临时工工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell327" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.临时工工时]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell328" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计临时工工时]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell329" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell330" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell331" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell332" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell333" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row14" Height="28.35">
+          <TableCell Name="Cell196" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell197" Border.Lines="All" Text="平均工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell198" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.平均工时]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell199" Border.Lines="All" Fill.Color="255, 192, 128" Text="[rengongData.累计平均工时]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell200" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell201" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell202" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell203" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell204" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row16" Height="28.35">
+          <TableCell Name="Cell226" Border.Lines="All" Text="能耗明细" HorzAlign="Center" VertAlign="Center" Font="宋体, 10pt, style=Bold" RowSpan="5"/>
+          <TableCell Name="Cell227" Border.Lines="All" Text="水量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell228" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell229" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell230" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨水]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell231" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨累计水]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell232" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣水]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell233" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣累计水]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell234" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row17" Height="28.35">
+          <TableCell Name="Cell241" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell242" Border.Lines="All" Text="电量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell243" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell244" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell245" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨电]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell246" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨累计电]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell247" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣电]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell248" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣累计电]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell249" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row18" Height="28.35">
+          <TableCell Name="Cell256" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell257" Border.Lines="All" Text="天然气(蒸汽)量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell258" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell259" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell260" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell261" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell262" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell263" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell264" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row19" Height="28.35">
+          <TableCell Name="Cell271" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell272" Border.Lines="All" Text="天然气量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell273" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell274" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell275" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨气]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell276" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨累计气]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell277" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣气]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell278" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣累计气]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell279" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row20" Height="28.35">
+          <TableCell Name="Cell286" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell287" Border.Lines="All" Text="蒸汽量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell288" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell289" Border.Lines="All" Fill.Color="255, 192, 128" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell290" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨汽]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell291" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.逅厨累计汽]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell292" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣汽]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell293" Border.Lines="All" Fill.Color="255, 192, 128" Text="[energydata.一鸣累计汽]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell294" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+      </TableObject>
+    </DataBand>
+  </ReportPage>
+</Report>

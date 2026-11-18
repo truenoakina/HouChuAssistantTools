@@ -1,0 +1,17 @@
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\bin\Debug\HCToolAutoUpdate.exe
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\bin\Debug\HCToolAutoUpdate.pdb
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.AutoUpdate.resources
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.Properties.Resources.resources
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.csproj.GenerateResource.Cache
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.exe
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.pdb
+D:\Project\逅厨系统辅助工具1.0\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.csprojResolveAssemblyReference.cache
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\bin\Debug\HCToolAutoUpdate.exe
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\bin\Debug\HCToolAutoUpdate.pdb
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.csproj.AssemblyReference.cache
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.AutoUpdate.resources
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.Properties.Resources.resources
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.csproj.GenerateResource.cache
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.csproj.CoreCompileInputs.cache
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.exe
+D:\Project\逅厨系统辅助工具4.62\HCToolAutoUpdate\HCToolAutoUpdate\obj\Debug\HCToolAutoUpdate.pdb

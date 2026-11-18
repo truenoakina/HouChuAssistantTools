@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/06/2026 15:29:20" ReportInfo.Modified="06/08/2026 13:24:48" ReportInfo.CreatorVersion="2021.2.8.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using System.Text.RegularExpressions;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+   
+    private void Cell7_AfterData(object sender, EventArgs e)
+    {
+        if(Cell7.Text==&quot;2099-12-31&quot;)
+        {
+              Cell7.Text=&quot;汇总&quot;;
+        }
+    }
+    
+
+    private void Cell22_AfterData(object sender, EventArgs e)
+    {
+      if(Cell22.Text==&quot;0&quot;||Cell22.Text==&quot;&quot;)
+      {
+        Cell22.Text=&quot;&quot;;
+      }
+    }
+    
+    
+
+    private void Cell26_AfterData(object sender, EventArgs e)
+    {
+      if(Cell26.Text==&quot;0&quot;||Cell26.Text==&quot;&quot;)
+      {
+        Cell26.Text=&quot;&quot;;
+      }
+    }
+
+    private void Cell30_AfterData(object sender, EventArgs e)
+    {
+      if(Cell30.Text==&quot;0&quot;||Cell30.Text==&quot;&quot;)
+      {
+        Cell30.Text=&quot;&quot;;
+      }
+    }
+
+    private void Cell34_AfterData(object sender, EventArgs e)
+    {
+      if(Cell34.Text==&quot;0&quot;||Cell34.Text==&quot;&quot;)
+      {
+        Cell34.Text=&quot;&quot;;
+      }
+    }
+
+    private void Cell8_AfterData(object sender, EventArgs e)
+    {
+         Cell8.Text= Regex.Replace(Cell8.Text, &quot;[A-Z]&quot;, &quot;&quot;);
+    }
+
+    private void Cell49_AfterData(object sender, EventArgs e)
+    {
+      if(Cell49.Text==&quot;0&quot;||Cell49.Text==&quot;&quot;)
+      {
+        Cell49.Text=&quot;&quot;;
+      }
+    }
+
+    private void Cell52_AfterData(object sender, EventArgs e)
+    {
+      if(Cell52.Text==&quot;0&quot;||Cell52.Text==&quot;&quot;)
+      {
+        Cell52.Text=&quot;&quot;;
+      }
+    }
+
+    private void Cell55_AfterData(object sender, EventArgs e)
+    {
+      if(Cell55.Text==&quot;0&quot;||Cell55.Text==&quot;&quot;)
+      {
+        Cell55.Text=&quot;&quot;;
+      }
+    }
+
+    private void Cell15_AfterData(object sender, EventArgs e)
+    {
+      if(Cell15.Text==&quot;9999.00&quot;||Cell15.Text==&quot;&quot;)
+      {
+        Cell15.Text=&quot;&quot;;
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5dY2MEkk4581WyvFOgNHCxB5dIx1cSh0Bv4OOmdMtiTaCHD6eWWr5HA91ApAVMLY4DCiTEILxN6LS2TvdVeHhinhSOSOprjytWuU6Ye7+bcyn8bvovNVzAjXZ9IP2s/cdQ==">
+      <TableDataSource Name="Table" Alias="kaoqin" DataType="System.Int32" Enabled="true" SelectCommand="exec FDD_KaoQingHZ @factory,@depname,@ftype,@fdate">
+        <Column Name="empname" DataType="System.String"/>
+        <Column Name="fdate" DataType="System.DateTime"/>
+        <Column Name="weekdate" DataType="System.String"/>
+        <Column Name="begintime" DataType="System.Decimal"/>
+        <Column Name="endtime" DataType="System.Decimal"/>
+        <Column Name="fmark" DataType="System.String"/>
+        <Column Name="days" DataType="System.Int32"/>
+        <Column Name="overtimes" DataType="System.Decimal"/>
+        <Column Name="sumhours" DataType="System.Decimal"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="depname" DataType="22" Expression="[depname]" DefaultValue="热厨"/>
+        <CommandParameter Name="ftype" DataType="22" Expression="[ftype]" DefaultValue="正编"/>
+        <CommandParameter Name="fdate" DataType="22" Expression="[fdate]" DefaultValue="2026-06-05"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="factory" DataType="System.String"/>
+    <Parameter Name="depname" DataType="System.String"/>
+    <Parameter Name="ftype" DataType="System.String"/>
+    <Parameter Name="fdate" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="900" PaperHeight="700" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="3326.4" Height="37.8">
+      <TextObject Name="Text1" Width="907.2" Height="37.8" Text="考勤数据-[Year(ToDateTime([fdate]))]年[Month(ToDateTime([fdate]))]月,[factory],[depname],[ftype]" VertAlign="Center" Font="微软雅黑, 12pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="3326.4" Height="151.59">
+      <MatrixObject Name="Matrix1" Top="9.45" Width="429.53" Height="142.14" AfterDataEvent="Matrix1_AfterData" FixedRows="2" FixedColumns="2" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="FormatDateTime([kaoqin.fdate],&quot;yyyy-MM-dd&quot;)" Totals="false"/>
+          <Header Expression="[kaoqin.weekdate]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[kaoqin.empname]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[kaoqin.fmark]"/>
+          <Cell Expression="[kaoqin.begintime]"/>
+          <Cell Expression="[kaoqin.endtime]"/>
+          <Cell Expression="[kaoqin.days]"/>
+          <Cell Expression="[kaoqin.overtimes]"/>
+          <Cell Expression="[kaoqin.sumhours]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="66.8" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="64.75" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="297.98" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Fill.Color="Cyan" Text="姓名" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Fill.Color="255, 255, 192" Text="统计\日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Fill.Color="192, 255, 192" AfterDataEvent="Cell7_AfterData" Text="[FormatDateTime([kaoqin.fdate],&quot;yyyy-MM-dd&quot;)]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell3" Font="宋体, 9pt"/>
+          <TableCell Name="Cell4" Font="宋体, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Fill.Color="192, 255, 192" AfterDataEvent="Cell8_AfterData" Text="[weekdate]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Fill.Color="Moccasin" Text="[empname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="6"/>
+          <TableCell Name="Cell6" Border.Lines="All" Fill.Color="Moccasin" Text="说明" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell9" Border.Lines="All" Fill.Color="Moccasin" Text="[fmark]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell13" Font="宋体, 9pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Fill.Color="Moccasin" Text="上班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell15" Border.Lines="All" Fill.Color="Moccasin" AfterDataEvent="Cell15_AfterData" Text="[begintime]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell20" Font="宋体, 9pt"/>
+          <TableCell Name="Cell21" Border.Lines="All" Fill.Color="Moccasin" Text="下班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Fill.Color="Moccasin" AfterDataEvent="Cell22_AfterData" Text="[endtime]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell24" Font="宋体, 9pt"/>
+          <TableCell Name="Cell25" Border.Lines="All" Fill.Color="Moccasin" Text="出勤天数" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell26" Border.Lines="All" Fill.Color="Moccasin" AfterDataEvent="Cell26_AfterData" Text="[days]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell28" Font="宋体, 9pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Fill.Color="Moccasin" Text="加班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell30" Border.Lines="All" Fill.Color="Moccasin" AfterDataEvent="Cell30_AfterData" Text="[overtimes]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell32" Font="宋体, 9pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Fill.Color="Moccasin" Text="总工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell34" Border.Lines="All" Fill.Color="Moccasin" AfterDataEvent="Cell34_AfterData" Text="[sumhours]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <DataBand Name="Data2" Top="197.39" Width="3326.4" Height="130.87">
+      <MatrixObject Name="Matrix2" Width="427.42" Height="122.26" Border.Lines="All" FixedRows="1" FixedColumns="2" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="FormatDateTime([kaoqin.fdate],&quot;yyyy-MM-dd&quot;)" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[kaoqin.empname]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[kaoqin.days]"/>
+          <Cell Expression="[kaoqin.overtimes]"/>
+          <Cell Expression="[kaoqin.sumhours]"/>
+        </MatrixCells>
+        <TableColumn Name="Column4" Width="64.69" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="64.75" AutoSize="true"/>
+        <TableColumn Name="Column6" Width="297.98" AutoSize="true"/>
+        <TableRow Name="Row9" Visible="false" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell35" Text="姓名" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell36" Text="统计\日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell41" Text="[FormatDateTime([kaoqin.fdate],&quot;yyyy-MM-dd&quot;)]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row10" Visible="false" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell37" Text="[empname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="3"/>
+          <TableCell Name="Cell38" Text="days" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell42" Text="[days]" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row11" Visible="false" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell39" Font="宋体, 9pt"/>
+          <TableCell Name="Cell40" Text="overtimes" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell43" Text="[overtimes]" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row12" Visible="false" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell44" Font="宋体, 9pt"/>
+          <TableCell Name="Cell45" Text="sumhours" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell46" Text="[sumhours]" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row13" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell47" Border.Lines="All" Fill.Color="LightGreen" Text="合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold" RowSpan="3"/>
+          <TableCell Name="Cell48" Border.Lines="All" Fill.Color="LightGreen" Text="出勤天数" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell49" Border.Lines="All" Fill.Color="LightGreen" AfterDataEvent="Cell49_AfterData" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row14" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell50" Font="宋体, 9pt"/>
+          <TableCell Name="Cell51" Border.Lines="All" Fill.Color="LightGreen" Text="加班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell52" Border.Lines="All" Fill.Color="LightGreen" AfterDataEvent="Cell52_AfterData" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row15" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell53" Font="宋体, 9pt"/>
+          <TableCell Name="Cell54" Border.Lines="All" Fill.Color="LightGreen" Text="总工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+          <TableCell Name="Cell55" Border.Lines="All" Fill.Color="LightGreen" AfterDataEvent="Cell55_AfterData" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+  </ReportPage>
+</Report>

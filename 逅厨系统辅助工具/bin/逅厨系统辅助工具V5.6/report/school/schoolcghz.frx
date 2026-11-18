@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/19/2025 22:28:25" ReportInfo.Modified="08/26/2025 13:34:37" ReportInfo.CreatorVersion="2021.2.8.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlq6CkS6l+niOCsMi13hWwqzPAyAki8nqR1PbOkcXKbVTDWKY0nuTO5vUI6iT4e4qsjm8pxzjo7m3XqidSVpynb7umXJWnMXDz4BFCb4heBbvduHRhxS2K/F6s1KyX4lVo+705zpVuruXrV7/5xIjXa5ILz5ydWcfFMTP2/seZ7tRFgpZUbS652EfWWaqES6hoEufH8pu9aN3IXneHyYZoYwA==">
+      <TableDataSource Name="Table" Alias="schoolcghz" DataType="System.Int32" Enabled="true" SelectCommand="select fzl.FNAME as fz,m.FNUMBER,ml.FNAME,ml.FSPECIFICATION,ml.FDESCRIPTION as beizhu,t.qty,t.uname from &#13;&#10;(select od.FMATERIALID,sum(od.FQTY) as qty,ul.FNAME as uname from T_SAL_ORDERENTRY od inner join T_SAL_ORDER o on o.FID=od.FID&#13;&#10;inner join T_BD_MATERIALBASE mb on mb.FMATERIALID=od.FMATERIALID&#13;&#10;inner join t_BD_Unit_L ul on mb.FBASEUNITID=ul.FUNITID&#13;&#10;where o.FDATE&gt;=@begindate and o.FDATE&lt;=@enddate and o.FSALEORGID=516100 and o.FDOCUMENTSTATUS='C'&#13;&#10;group by od.FMATERIALID,ul.FNAME) t&#13;&#10;inner join t_bd_material m on t.FMATERIALID=m.FMATERIALID&#13;&#10;inner join t_bd_material_l ml on m.FMATERIALID=ml.FMATERIALID&#13;&#10;inner join T_BD_MATERIALGROUP_L fzl on m.FMATERIALGROUP=fzl.FID">
+        <Column Name="fz" DataType="System.String"/>
+        <Column Name="FNUMBER" DataType="System.String"/>
+        <Column Name="FNAME" DataType="System.String"/>
+        <Column Name="FSPECIFICATION" DataType="System.String"/>
+        <Column Name="beizhu" DataType="System.String"/>
+        <Column Name="qty" DataType="System.Decimal"/>
+        <Column Name="uname" DataType="System.String"/>
+        <CommandParameter Name="begindate" DataType="31" Expression="[begindate]" DefaultValue="2025-08-01"/>
+        <CommandParameter Name="enddate" DataType="31" Expression="[enddate]" DefaultValue="2025-08-24"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="begindate" DataType="System.DateTime"/>
+    <Parameter Name="enddate" DataType="System.DateTime"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="宋体, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="28.35">
+      <TextObject Name="Text13" Left="236.25" Width="236.25" Height="28.35" Text="逅厨物料采购需求汇总" Font="微软雅黑, 16pt"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="30.35" Width="718.2" Height="28.35" StartNewPage="true" Condition="[schoolcghz.fz]">
+      <TextObject Name="Text2" Left="18.9" Width="415.8" Height="28.35" Text="[[schoolcghz.fz]]([begindate]~[enddate])" Font="微软雅黑, 14pt"/>
+      <DataBand Name="Data1" Top="81.6" Width="718.2" Height="28.35" DataSource="Table" KeepDetail="true">
+        <TextObject Name="Text3" Left="37.8" Width="94.5" Height="28.35" Border.Lines="All" Text="[schoolcghz.FNUMBER]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        <TextObject Name="Text5" Left="132.3" Width="122.85" Height="28.35" Border.Lines="All" Text="[schoolcghz.FNAME]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        <TextObject Name="Text7" Left="255.15" Width="151.2" Height="28.35" Border.Lines="All" Text="[schoolcghz.FSPECIFICATION]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        <TextObject Name="Text9" Left="406.35" Width="170.1" Height="28.35" Border.Lines="All" Text="[schoolcghz.beizhu]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        <TextObject Name="Text11" Left="576.45" Width="56.7" Height="28.35" Border.Lines="All" Text="[schoolcghz.qty]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text12" Left="633.15" Width="37.8" Height="28.35" Border.Lines="All" Text="[schoolcghz.uname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        <TextObject Name="Text21" Left="9.45" Width="28.35" Height="28.35" Border.Lines="All" Text="[Row#]" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 7pt, style=Bold"/>
+        <DataHeaderBand Name="DataHeader1" Top="60.7" Width="718.2" Height="18.9">
+          <TextObject Name="Text14" Left="37.8" Width="94.5" Height="18.9" Border.Lines="All" Text="物料编码" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt, style=Bold"/>
+          <TextObject Name="Text15" Left="132.3" Width="122.85" Height="18.9" Border.Lines="All" Text="物料名称" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt, style=Bold"/>
+          <TextObject Name="Text16" Left="255.15" Width="151.2" Height="18.9" Border.Lines="All" Text="规格" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt, style=Bold"/>
+          <TextObject Name="Text17" Left="406.35" Width="170.1" Height="18.9" Border.Lines="All" Text="备注" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt, style=Bold"/>
+          <TextObject Name="Text18" Left="576.45" Width="56.7" Height="18.9" Border.Lines="All" Text="需求数量" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 8pt, style=Bold"/>
+          <TextObject Name="Text19" Left="633.15" Width="37.8" Height="18.9" Border.Lines="All" Text="单位" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 9pt, style=Bold"/>
+          <TextObject Name="Text20" Left="9.45" Width="28.35" Height="18.9" Border.Lines="All" Text="序号" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 7pt, style=Bold"/>
+        </DataHeaderBand>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="111.95" Width="718.2"/>
+    </GroupHeaderBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="12/14/2021 13:47:57" ReportInfo.Modified="12/14/2021 16:33:47" ReportInfo.CreatorVersion="2016.1.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    private string lasttext1=&quot;&quot;;
+    private string lastadd=&quot;&quot;;
+    
+    private void Text5_BeforePrint(object sender, EventArgs e)
+    {
+      DataSourceBase dsb= Report.GetDataSource(&quot;米饭间煮粥配料表&quot;);
+      if(lasttext1==&quot;&quot;||dsb[&quot;产品名称&quot;].ToString()!=lasttext1)
+      {
+        lasttext1= dsb[&quot;产品名称&quot;].ToString();
+        lastadd=lastadd==&quot;&quot;?((char)0).ToString():&quot;&quot;;
+      }
+      Text5.Text=Text5.Text+lastadd;
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8SpNDUdIL12knNSqiNSC0BCerLDk8tlLVhtM+qYCD7iKvGPH5slL002Fq63njcUJsYd56XNh14caiLn1+bx6YW212i1TPha8SqPKmBsAwTynDk/A+FLshPLcd/Sta18IvbDbwJsNFl6A/6qgklzfcvb7Re0X/R3QGDE3W7mCFHRVXpikP7MOUxnRrqPai3FyAA==">
+      <TableDataSource Name="Table" Alias="米饭间煮粥配料表" DataType="System.Int32" Enabled="true" SelectCommand="exec zhuzhouPL @date">
+        <Column Name="产品名称" DataType="System.String"/>
+        <Column Name="份数" DataType="System.Decimal"/>
+        <Column Name="配菜" DataType="System.String"/>
+        <Column Name="配料名称" DataType="System.String"/>
+        <Column Name="单份量" DataType="System.String"/>
+        <Column Name="总量" DataType="System.String"/>
+        <Column Name="单位" DataType="System.String"/>
+        <CommandParameter Name="date" DataType="31" Expression="[date]" DefaultValue="2021-12-14"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="date" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="47.25">
+      <TextObject Name="Text15" Left="245.7" Top="9.45" Width="226.8" Height="37.8" Text="米饭间煮粥配料表" HorzAlign="Center" VertAlign="Center" Font="宋体, 16pt, style=Bold"/>
+      <TextObject Name="Text16" Left="9.45" Top="28.35" Width="160.65" Height="18.9" Text="文件编号:JZ05-4-001-01" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text17" Left="529.2" Top="28.35" Width="160.65" Height="18.9" Text="生产日期:[date]" VertAlign="Bottom" Font="宋体, 9pt"/>
+      <TextObject Name="Text18" Left="529.2" Top="9.45" Width="160.65" Height="18.9" Text="第[Page]页 共[TotalPages]页" VertAlign="Center" Font="宋体, 9pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TextObject Name="Text1" Left="9.45" Width="151.2" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[米饭间煮粥配料表.产品名称]" Duplicates="Merge" AutoShrink="FontWidth" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt"/>
+      <TextObject Name="Text3" Left="160.65" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[米饭间煮粥配料表.份数]" Duplicates="Merge" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text5" Left="217.35" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" BeforePrintEvent="Text5_BeforePrint" CanBreak="false" Text="[米饭间煮粥配料表.配菜]" Duplicates="Merge" AutoShrink="FontWidth" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt"/>
+      <TextObject Name="Text7" Left="330.75" Width="160.65" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[米饭间煮粥配料表.配料名称]" AutoShrink="FontWidth" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt"/>
+      <TextObject Name="Text9" Left="491.4" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[米饭间煮粥配料表.单份量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="1" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt"/>
+      <TextObject Name="Text11" Left="557.55" Width="75.6" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[米饭间煮粥配料表.总量]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="1" Format.DecimalSeparator="." Format.GroupSeparator="" Format.NegativePattern="1" AutoShrink="FontWidth" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt"/>
+      <TextObject Name="Text13" Left="633.15" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[米饭间煮粥配料表.单位]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 11pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="51.25" Width="718.2" Height="18.9" RepeatOnEveryPage="true">
+        <TextObject Name="Text2" Left="9.45" Width="151.2" Height="18.9" Border.Lines="All" Text="产品名称" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text4" Left="160.65" Width="56.7" Height="18.9" Border.Lines="All" Text="份数" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text6" Left="217.35" Width="113.4" Height="18.9" Border.Lines="All" Text="配菜" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text8" Left="330.75" Width="160.65" Height="18.9" Border.Lines="All" Text="配料名称" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text10" Left="491.4" Width="66.15" Height="18.9" Border.Lines="All" Text="单份量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text12" Left="557.55" Width="75.6" Height="18.9" Border.Lines="All" Text="总量" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text14" Left="633.15" Width="47.25" Height="18.9" Border.Lines="All" Text="单位" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+</Report>

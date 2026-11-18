@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="05/14/2026 16:44:45" ReportInfo.Modified="05/21/2026 15:05:00" ReportInfo.CreatorVersion="2021.2.8.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+      
+    private void Cell66_AfterData(object sender, EventArgs e)
+    {
+           Cell66.Text=&quot;&quot;;
+    }
+
+    private void Cell67_AfterData(object sender, EventArgs e)
+    {
+            Cell67.Text=&quot;&quot;;
+    }
+
+    private void Cell68_AfterData(object sender, EventArgs e)
+    {
+           Cell68.Text=&quot;&quot;;
+    }
+  }
+}
+</ScriptText>
+  <Styles Name="Standard">
+    <Style Name="Title" Font="宋体, 12pt, style=Bold"/>
+    <Style Name="Header" Font="宋体, 10pt, style=Bold"/>
+    <Style Name="Group" Font="宋体, 10pt, style=Bold"/>
+    <Style Name="Data" Font="宋体, 9pt"/>
+    <Style Name="Footer" Font="宋体, 9pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="宋体, 9pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5dY2MEkk4581WyvFOgNHCxB5dIx1cSh0Bv4OOmdMtiTaCHD6eWWr5HA91ApAVMLY4DCiTEILxN6LS2TvdVeHhinhSOSOprjytWuU6Ye7+bcycOvhQFzkGIZuNXrqrKF+gg==">
+      <TableDataSource Name="Table" Alias="Attendance" DataType="System.Int32" Enabled="true" SelectCommand="select emp.empname,ad.fdate,datename(weekday, ad.fdate) as weekdate,ad.begintime,ad.endtime,ad.fmark,&#13;&#10;case when (ad.endtime-ad.begintime)&gt;cfg.dayHours then 1 else 0 end as days,&#13;&#10;iif(ad.endtime-ad.begintime-iif(cfg.isWuCanKJ=1,cfg.dinetime,0)-iif(cfg.isWanCanKJ=1,cfg.dinetime,0)-cfg.regularHours&gt;0,&#13;&#10;ad.endtime-ad.begintime-iif(cfg.isWuCanKJ=1,cfg.dinetime,0)-iif(cfg.isWanCanKJ=1,cfg.dinetime,0)-cfg.regularHours,0) as overtimes,&#13;&#10;iif(ad.fmark='出勤',ad.endtime-ad.begintime-iif(cfg.isWuCanKJ=1,cfg.dinetime,0)-iif(cfg.isWanCanKJ=1,cfg.dinetime,0),0) as sumhours from FDD_AttendanceDetail ad &#13;&#10;inner join FDD_Employee emp on emp.id=ad.empid &#13;&#10;inner join FDD_Config cfg on cfg.fdate=ad.fdate where &#13;&#10;ad.factory=@factory and ad.depname=@depname and ad.ftype=@ftype and CONVERT(varchar(7),ad.fdate,120)=CONVERT(varchar(7),@fdate,120) order by emp.empname,ad.fdate">
+        <Column Name="empname" DataType="System.String"/>
+        <Column Name="fdate" DataType="System.DateTime" Format="Date"/>
+        <Column Name="begintime" DataType="System.Decimal"/>
+        <Column Name="endtime" DataType="System.Decimal"/>
+        <Column Name="overtimes" DataType="System.Decimal"/>
+        <Column Name="sumhours" DataType="System.Decimal"/>
+        <Column Name="weekdate" DataType="System.String"/>
+        <Column Name="fmark" DataType="System.String"/>
+        <Column Name="days" DataType="System.Int16"/>
+        <CommandParameter Name="fdate" DataType="4" Expression="[fdate]" DefaultValue="2026-05-13"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="depname" DataType="22" Expression="[depname]" DefaultValue="热厨"/>
+        <CommandParameter Name="ftype" DataType="22" Expression="[ftype]" DefaultValue="正编"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="fdate" DataType="System.DateTime"/>
+    <Parameter Name="factory" DataType="System.String"/>
+    <Parameter Name="depname" DataType="System.String"/>
+    <Parameter Name="ftype" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="900" PaperHeight="700" Watermark.Font="宋体, 60pt">
+    <DataBand Name="Data1" Width="3326.4" Height="142.26">
+      <MatrixObject Name="Matrix1" Width="475.2" Height="142.14" Border.Lines="All" AfterDataEvent="Matrix1_AfterData" FixedRows="2" FixedColumns="2" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="FormatDateTime([Attendance.fdate],&quot;yyyy-MM-dd&quot;)"/>
+          <Header Expression="[Attendance.weekdate]" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[Attendance.empname]" Totals="false"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[Attendance.fmark]" Function="None"/>
+          <Cell Expression="[Attendance.begintime]" Function="None"/>
+          <Cell Expression="[Attendance.endtime]" Function="None"/>
+          <Cell Expression="[Attendance.days]"/>
+          <Cell Expression="[Attendance.overtimes]"/>
+          <Cell Expression="[Attendance.sumhours]"/>
+        </MatrixCells>
+        <TableColumn Name="Column1" Width="64.69" AutoSize="true"/>
+        <TableColumn Name="Column2" Width="64.61" AutoSize="true"/>
+        <TableColumn Name="Column3" Width="312.19" AutoSize="true"/>
+        <TableColumn Name="Column7" Width="33.71" AutoSize="true"/>
+        <TableRow Name="Row1" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell1" Border.Lines="All" Fill.Color="DeepSkyBlue" Text="姓名" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="2"/>
+          <TableCell Name="Cell2" Border.Lines="All" Fill.Color="DodgerBlue" Text="统计\日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="2"/>
+          <TableCell Name="Cell7" Border.Lines="All" Fill.Color="Orange" Text="[FormatDateTime([Attendance.fdate],&quot;yyyy-MM-dd&quot;)]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" TabWidth="40"/>
+          <TableCell Name="Cell64" Border.Lines="All" Fill.Color="DeepSkyBlue" Text="合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="2"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell3" Font="宋体, 9pt"/>
+          <TableCell Name="Cell4" Font="宋体, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Fill.Color="Gold" Text="[weekdate]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell65" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell5" Border.Lines="All" Fill.Color="GreenYellow" Text="[empname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="6">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell6" Border.Lines="All" Fill.Color="GreenYellow" Text="说明" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex-3)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell9" Border.Lines="All" Fill.Color="GreenYellow" Text="[fmark]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell66" Border.Lines="All" Fill.Color="Aqua" AfterDataEvent="Cell66_AfterData" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell10" Font="宋体, 9pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Fill.Color="GreenYellow" Text="上班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex-3)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell12" Border.Lines="All" Fill.Color="GreenYellow" Text="[begintime]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell67" Border.Lines="All" Fill.Color="Aqua" AfterDataEvent="Cell67_AfterData" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell13" Font="宋体, 9pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Fill.Color="GreenYellow" Text="下班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex-3)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell15" Border.Lines="All" Fill.Color="GreenYellow" Text="[endtime]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell68" Border.Lines="All" Fill.Color="Aqua" AfterDataEvent="Cell68_AfterData" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row6" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell16" Font="宋体, 9pt"/>
+          <TableCell Name="Cell17" Border.Lines="All" Fill.Color="GreenYellow" Text="出勤天数" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex-3)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell18" Border.Lines="All" Fill.Color="GreenYellow" Text="[days]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell69" Border.Lines="All" Fill.Color="Aqua" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row7" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell19" Font="宋体, 9pt"/>
+          <TableCell Name="Cell20" Border.Lines="All" Fill.Color="GreenYellow" Text="加班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex-3)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell21" Border.Lines="All" Fill.Color="GreenYellow" Text="[overtimes]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell70" Border.Lines="All" Fill.Color="Aqua" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell22" Font="宋体, 9pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Fill.Color="GreenYellow" Text="总工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt">
+            <Highlight>
+              <Condition Expression="(Matrix1.RowIndex-3)%2 != 0" Fill.Color="PaleGreen" Font="宋体, 9pt" ApplyFill="true" ApplyTextFill="false"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell24" Border.Lines="All" Fill.Color="GreenYellow" Text="[sumhours]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell71" Border.Lines="All" Fill.Color="Aqua" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+    <DataBand Name="Data2" Top="144.26" Width="3326.4" Height="122.26">
+      <MatrixObject Name="Matrix2" Width="441.57" Height="122.26" FixedRows="1" FixedColumns="2" DataSource="Table">
+        <MatrixColumns>
+          <Header Expression="FormatDateTime([Attendance.fdate],&quot;yyyy-MM-dd&quot;)" Totals="false"/>
+        </MatrixColumns>
+        <MatrixRows>
+          <Header Expression="[Attendance.empname]"/>
+        </MatrixRows>
+        <MatrixCells>
+          <Cell Expression="[Attendance.days]"/>
+          <Cell Expression="[Attendance.overtimes]"/>
+          <Cell Expression="[Attendance.sumhours]"/>
+        </MatrixCells>
+        <TableColumn Name="Column4" Width="64.69" AutoSize="true"/>
+        <TableColumn Name="Column5" Width="64.69" AutoSize="true"/>
+        <TableColumn Name="Column6" Width="312.19" AutoSize="true"/>
+        <TableRow Name="Row15" Visible="false" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell43" Border.Lines="All" Text="姓名" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell44" Border.Lines="All" Text="Data" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell49" Border.Lines="All" Text="[FormatDateTime([Attendance.fdate],&quot;yyyy-MM-dd&quot;)]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row16" Visible="false" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell45" Border.Lines="All" Text="[empname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="3"/>
+          <TableCell Name="Cell46" Border.Lines="All" Text="days" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell50" Border.Lines="All" Text="[days]" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row17" Visible="false" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell47" Font="宋体, 9pt"/>
+          <TableCell Name="Cell48" Border.Lines="All" Text="overtimes" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell51" Border.Lines="All" Text="[overtimes]" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row18" Visible="false" Height="16.5" AutoSize="true">
+          <TableCell Name="Cell52" Font="宋体, 9pt"/>
+          <TableCell Name="Cell53" Border.Lines="All" Text="sumhours" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell54" Border.Lines="All" Text="[sumhours]" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row19" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell55" Border.Lines="All" Fill.Color="Aqua" Text="合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt" RowSpan="3"/>
+          <TableCell Name="Cell56" Border.Lines="All" Fill.Color="Aqua" Text="出勤天数" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell57" Border.Lines="All" Fill.Color="Aqua" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row20" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell58" Font="宋体, 9pt"/>
+          <TableCell Name="Cell59" Border.Lines="All" Fill.Color="Aqua" Text="加班" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell60" Border.Lines="All" Fill.Color="Aqua" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row21" Height="18.19" AutoSize="true">
+          <TableCell Name="Cell61" Font="宋体, 9pt"/>
+          <TableCell Name="Cell62" Border.Lines="All" Fill.Color="Aqua" Text="总工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell63" Border.Lines="All" Fill.Color="Aqua" HorzAlign="Right" VertAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+      </MatrixObject>
+    </DataBand>
+  </ReportPage>
+</Report>

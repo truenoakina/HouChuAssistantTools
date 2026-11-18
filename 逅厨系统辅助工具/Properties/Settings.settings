@@ -1,0 +1,135 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="逅厨系统辅助工具.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="isWarnzizhi" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="isSaveUserName" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="zizhiRefreshTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="isautorun" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="usefulDays" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="defaultfacid" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="iswrkWarn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="notneedWarnDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2024-09-01</Value>
+    </Setting>
+    <Setting Name="wrkdays" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="wrkRefreshTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="fdNums" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25,36</Value>
+    </Setting>
+    <Setting Name="isOutNet" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FDD_dayHours" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">7.5</Value>
+    </Setting>
+    <Setting Name="FDD_regularHours" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="FDD_diningTime" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="FDD_isWuCanKJ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FDD_isWanCanKJ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FDD_waterPrice_JZJ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">18.35</Value>
+    </Setting>
+    <Setting Name="FDD_elecPrice" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1.06</Value>
+    </Setting>
+    <Setting Name="FDD_ngPrice" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3.3853</Value>
+    </Setting>
+    <Setting Name="FDD_steamPrice" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">225.18</Value>
+    </Setting>
+    <Setting Name="FDD_regEmpPrice" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">26</Value>
+    </Setting>
+    <Setting Name="FDD_tempEmpPrice" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">21</Value>
+    </Setting>
+    <Setting Name="FDD_manualFixValue_JZJ" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2900</Value>
+    </Setting>
+    <Setting Name="FDD_YMEmpNum_JZJ" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="FDD_YMwater_JZJ" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="FDD_YMelec_JZJ" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">320</Value>
+    </Setting>
+    <Setting Name="FDD_YMng_JZJ" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="FDD_YMsteam_JZJ" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="FDD_YMEmpNum_GZT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FDD_YMwater_GZT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="FDD_YMelec_GZT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="FDD_YMng_GZT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">42</Value>
+    </Setting>
+    <Setting Name="FDD_YMsteam_GZT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FDD_waterPrice_GZT" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">14.68</Value>
+    </Setting>
+    <Setting Name="FDD_manualFixValue_GZT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="FDD_Salary_3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2020</Value>
+    </Setting>
+    <Setting Name="FDD_EmpNum_3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">21.75</Value>
+    </Setting>
+    <Setting Name="FDD_Salary_1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2280</Value>
+    </Setting>
+    <Setting Name="FDD_EmpNum_1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">22</Value>
+    </Setting>
+    <Setting Name="SNCK_JYY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">陈馨</Value>
+    </Setting>
+    <Setting Name="SNCK_SHY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">沈祥华</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

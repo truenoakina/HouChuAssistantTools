@@ -1,0 +1,200 @@
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Windows.Forms;
+
+
+namespace 逅厨系统辅助工具
+{
+    public partial class OutSongHuoDanGDHC : Form
+    {
+        private DataTable dt, dt2;
+        private bool flag = false;
+        private string altermsg = "";//警告信息，警告外部订单中哪些物料在金蝶中缺少69码
+        private string guid = "";   //随机字符串，等于主机名称
+        public List<string> sheets = new List<string> { };
+
+        
+
+        public static OutSongHuoDanGDHC outSongHuoDanGDHC;//静态实例化对象
+        public OutSongHuoDanGDHC()
+        {
+            InitializeComponent();
+            outSongHuoDanGDHC = this;
+        }
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fileName = "";//文件名称
+            string sql = @"delete from WOERMASHD where guid=@guid";
+            SQLHelper.ExecSql(sql, SQLHelper.MakeParam("guid", guid));
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = false;//该值确定是否可以选择多个文件
+            dialog.Title = "请选择文件";
+            dialog.Filter = "excel文件(*.xls;*.xlsx)|*.xls;*.xlsx";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK && dialog.FileNames.Length != 0)
+            {
+                try
+                {
+                    fileName = dialog.FileName;//读取所选取文件
+                                               //判断文件是否已打开，需要关闭后操作
+                    try
+                    {
+                        System.IO.FileStream stream = System.IO.File.OpenWrite(fileName);
+                        stream.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("文件已经被打开，请关闭后再操作.");
+                        return;
+                    }
+                    
+                    
+                    dt = ExcelHelper.ExcelToTableGDHCSHD(fileName);
+                    
+                    tb_filename.Text = Path.GetFileName(fileName) +"中页签:"+MyVar.Sheetname;
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            else
+            {
+                return;
+            }
+
+
+        }
+
+
+        private void OutSongHuoDanGDHC_Load(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = System.DateTime.Now;
+            guid = Dns.GetHostName();
+            label3.Text = "文件\n名称";
+            tb_fdnum.Text= Properties.Settings.Default.fdNums.ToString();
+        }
+
+        private void btn_change_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.fdNums = tb_fdnum.Text.Trim();
+            Properties.Settings.Default.Save();
+            //需要分单的订单开头字符串FDSTARTNUM
+            string[] FDSTARTNUM = Properties.Settings.Default.fdNums.ToString().Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries);
+            if (tb_ddno.Text.ToString().Trim().Equals("") || tb_dep.Text.ToString().Trim().Equals(""))
+            {
+                MessageBox.Show("订单号和部门不能为空，请检查");
+                return;
+            }
+
+            dt = dataGridView1.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0)
+            {
+                MessageBox.Show("未上传文档，请检查");
+                return;
+            }
+            else
+            {
+                //guid = RandomStr.GetRandomString(20);
+                
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string sql = @"insert into WOERMASHD (guid,shop,spcode,spname,num) values (@guid,@shop,@spcode,@spname,@num)";
+                    flag = SQLHelper.ExecSql(sql, SQLHelper.MakeParam("guid", guid), SQLHelper.MakeParam("shop", dt.Rows[i]["门店"].ToString()), SQLHelper.MakeParam("spcode", dt.Rows[i]["商品号"].ToString()), SQLHelper.MakeParam("spname", dt.Rows[i]["商品名称"].ToString()),SQLHelper.MakeParam("num", dt.Rows[i]["数量"].ToString()));
+                }
+                if (flag == true)
+                {
+                    
+                    string sql = @"select distinct l.spcode from WOERMASHD l where not exists (select 1 from AIShlhcsvr.dbo.T_BD_MATERIAL m where m.FMNEMONICCODE=l.spcode and m.FUSEORGID=441894)
+                                                             and l.guid=@guid";
+                    DataSet ds = SQLHelper.GetDataSet(sql, SQLHelper.MakeParam("guid", guid));
+                    dt2 = ds.Tables[0];
+                    if (dt2.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dt2.Rows.Count; i++)
+                        {
+                            if (i < dt2.Rows.Count - 1)
+                            {
+                                altermsg = altermsg + "'" + dt2.Rows[i][0].ToString() + "'" + ",";
+                            }
+                            else
+                            {
+                                altermsg = altermsg + "'" + dt2.Rows[i][0].ToString() + "'";
+                            }
+                        }
+                        sql = @"delete from WOERMASHD where guid=@guid";
+                        SQLHelper.ExecSql(sql, SQLHelper.MakeParam("guid", guid));
+                        MessageBox.Show("沃尔玛商品编码(一便码)" + altermsg + "在金蝶中没有匹配到商品，请检查系统中该物料的一便码");
+                    }
+                    else
+                    {
+                        sql = @"select l.shop,l.spcode,l.spname,mb.FBARCODE,floor(mb.FNETWEIGHT),l.num,mb.F_ZZSZ_FDDYPC as pc from WOERMASHD l
+                                                    left join AIShlhcsvr.dbo.T_BD_MATERIAL m on m.FMNEMONICCODE=l.spcode 
+                                                    inner join AIShlhcsvr.dbo.T_BD_MATERIALBASE mb on m.FMATERIALID=mb.FMATERIALID
+                                                    where l.guid=@guid and m.FUSEORGID=441894
+                                                    order by l.shop,mb.F_ZZSZ_FDDYPC,l.spcode";
+                        ds = SQLHelper.GetDataSet(sql, SQLHelper.MakeParam("guid", guid));
+                        dt2 = ds.Tables[0];
+
+
+                        string fileExt = ".xlsx";
+
+                        //nowDate = DateTime.Now.ToString("D");
+                        //取查询日期段作为文件名称
+                        MyVar.saleDate = dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day;
+                        MyVar.Dep = tb_dep.Text;
+                        MyVar.OrderNo = tb_ddno.Text;
+                        string strt = dateTimePicker1.Text;
+
+                        FolderBrowserDialog fbd = new FolderBrowserDialog();
+                        if (fbd.ShowDialog(this) == DialogResult.OK)
+                        {
+                            //判断订单号前几个字符是否包含需要分单的订单号
+                            if(FDSTARTNUM.Any(prefix => tb_ddno.Text.StartsWith(prefix)))
+                            //if (tb_ddno.Text.Substring(0, 2).Equals("25"))
+                            {//广东逅厨沃尔玛送货单转换-分单打印
+                                ExcelHelper.TableToExcelGDHCWEMSHD_FD_barcode(fbd.DirectoryPath + @"\" + "沃尔玛送货单" + strt, dt2 as DataTable, fileExt);
+                            }
+                            //else if (tb_ddno.Text.Substring(0, 2).Equals("93")|| tb_ddno.Text.Substring(0, 2).Equals("65"))
+                            else
+                            {
+                                ExcelHelper.TableToExcelGDHCWEMSHD_barcode(fbd.DirectoryPath + @"\" + "沃尔玛送货单" + strt, dt2 as DataTable, fileExt);
+                            }
+
+                            MessageBox.Show(fbd.DirectoryPath + @"\" + "沃尔玛送货单" + strt + fileExt + " 导出成功！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sql = @"delete from WOERMASHD where guid=@guid";
+                            SQLHelper.ExecSql(sql, SQLHelper.MakeParam("guid", guid));
+                        }
+                        else if (fbd.ShowDialog(this) == DialogResult.Cancel)
+                        {
+                            sql = @"delete from WOERMASHD where guid=@guid";
+                            SQLHelper.ExecSql(sql, SQLHelper.MakeParam("guid", guid));
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("上传文档异常，请检查");
+                    return;
+                }
+            }
+        }
+
+    }
+}

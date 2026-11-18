@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="05/18/2026 15:49:17" ReportInfo.Modified="05/21/2026 16:11:48" ReportInfo.CreatorVersion="2021.2.8.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    
+
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8fHlj9bZRmnZNrTbdTR/Bg8pGzFF45W835wXdXmW1OBlsX9V37VJuskUETvgU9Vu5dY2MEkk4581WyvFOgNHCxB5dIx1cSh0Bv4OOmdMtiTaCHD6eWWr5HA91ApAVMLY4DCiTEILxN6LS2TvdVeHhinhSOSOprjytWuU6Ye7+bcy/B/DcxrFVHXd896+BrA7Sw==">
+      <TableDataSource Name="Table" Alias="AttendanceHuiZong" DataType="System.Int32" Enabled="true" SelectCommand="exec FDD_KaoQingHZ @factory,@depname,@ftype,@fdate">
+        <Column Name="empname" DataType="System.String"/>
+        <Column Name="总天数" DataType="System.Int32"/>
+        <Column Name="总工时" DataType="System.Decimal"/>
+        <Column Name="基本工时" DataType="System.Int32"/>
+        <Column Name="法定假日出勤总工时" DataType="System.Int32"/>
+        <Column Name="加班时间" DataType="System.Decimal"/>
+        <Column Name="双倍工时" DataType="System.Decimal"/>
+        <Column Name="事假" DataType="System.Int32"/>
+        <Column Name="旷工" DataType="System.Int32"/>
+        <Column Name="工伤" DataType="System.Int32"/>
+        <Column Name="年假" DataType="System.Int32"/>
+        <Column Name="病假" DataType="System.Int32"/>
+        <Column Name="丧假" DataType="System.Int32"/>
+        <Column Name="产假" DataType="System.Int32"/>
+        <CommandParameter Name="factory" DataType="22" Expression="[factory]" DefaultValue="佳之家"/>
+        <CommandParameter Name="depname" DataType="22" Expression="[depname]" DefaultValue="热厨"/>
+        <CommandParameter Name="ftype" DataType="22" Expression="[ftype]" DefaultValue="正编"/>
+        <CommandParameter Name="fdate" DataType="4" Expression="[fdate]" DefaultValue="2026-05-13"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="fdate" DataType="System.DateTime"/>
+    <Parameter Name="factory" DataType="System.String"/>
+    <Parameter Name="depname" DataType="System.String"/>
+    <Parameter Name="ftype" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="宋体, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="28.35">
+      <TextObject Name="Text3" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="姓名" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text5" Left="56.7" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="总天数" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text7" Left="113.4" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="总工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text9" Left="170.1" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="基本工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="226.8" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="法定假日出勤总工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 7pt, style=Bold"/>
+      <TextObject Name="Text13" Left="283.5" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="加班时间" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text15" Left="340.2" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="双倍工时" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text17" Left="396.9" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="事假" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text19" Left="434.7" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="旷工" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text21" Left="472.5" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="工伤" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text23" Left="510.3" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="年假" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text25" Left="548.1" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="病假" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text27" Left="585.9" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="丧假" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+      <TextObject Name="Text29" Left="623.7" Width="37.8" Height="28.35" Border.Lines="All" Fill.Color="Aquamarine" Text="产假" HorzAlign="Center" VertAlign="Center" Font="宋体, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="30.35" Width="718.2" Height="18.9" DataSource="Table">
+      <TextObject Name="Text2" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.empname]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text4" Left="56.7" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.总天数]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text6" Left="113.4" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.总工时]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text8" Left="170.1" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.基本工时]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text10" Left="226.8" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.法定假日出勤总工时]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text12" Left="283.5" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.加班时间]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text14" Left="340.2" Width="56.7" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.双倍工时]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 9pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text16" Left="396.9" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.事假]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text18" Left="434.7" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.旷工]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text20" Left="472.5" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.工伤]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text22" Left="510.3" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.年假]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text24" Left="548.1" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.病假]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text26" Left="585.9" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.丧假]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+      <TextObject Name="Text28" Left="623.7" Width="37.8" Height="18.9" Border.Lines="All" Text="[AttendanceHuiZong.产假]" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+    </DataBand>
+  </ReportPage>
+</Report>

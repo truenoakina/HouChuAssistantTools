@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" DoublePass="true" ReportInfo.Created="12/13/2021 11:35:55" ReportInfo.Modified="12/13/2021 14:01:45" ReportInfo.CreatorVersion="2016.1.0.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8SpNDUdIL12knNSqiNSC0BCerLDk8tlLVhtM+qYCD7iKvGPH5slL002Fq63njcUJsYd56XNh14caiLn1+bx6YW212i1TPha8SqPKmBsAwTynDk/A+FLshPLcd/Sta18IvbDbwJsNFl6A/6qgklzfcvb7Re0X/R3QGDE3W7mCFHRV/xJl2c+QblqFCr6AFOi3GQ==">
+      <TableDataSource Name="Table" Alias="总订单" DataType="System.Int32" Enabled="true" SelectCommand="exec JzjOrderQty @date">
+        <Column Name="品类" DataType="System.String"/>
+        <Column Name="高速" DataType="System.String"/>
+        <Column Name="高速订单" DataType="System.String"/>
+        <Column Name="江苏地区" DataType="System.String"/>
+        <Column Name="江苏安徽订单" DataType="System.Int32"/>
+        <Column Name="逅厨" DataType="System.String"/>
+        <Column Name="罗森订单" DataType="System.Int32"/>
+        <Column Name="总订单" DataType="System.Int32"/>
+        <CommandParameter Name="date" DataType="31" Expression="[date]" DefaultValue="2021-12-13"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="date" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="5" TopMargin="5" RightMargin="5" BottomMargin="5" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader1" Width="756" Height="47.25">
+      <TextObject Name="Text17" Left="236.25" Top="9.45" Width="283.5" Height="28.35" Text="[date]" HorzAlign="Center" VertAlign="Center" Font="宋体, 20pt, style=Bold"/>
+      <TextObject Name="Text18" Left="9.45" Top="9.45" Width="170.1" Height="18.9" Text="文件编号:JZ05-4-001-01" VertAlign="Bottom" Font="宋体, 9pt"/>
+      <TextObject Name="Text19" Left="9.45" Top="28.35" Width="170.1" Height="18.9" Text="第[Page]页 共[TotalPages]页" VertAlign="Bottom" Font="宋体, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="83.6" Width="756" Height="18.9" DataSource="Table">
+      <TextObject Name="Text1" Left="9.45" Width="47.25" Height="18.9" Border.Lines="All" Text="[总订单.品类]" Duplicates="Merge" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text3" Left="56.7" Width="198.45" Height="18.9" Border.Lines="All" Text="[总订单.高速]" AutoShrink="FontWidth" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text5" Left="255.15" Width="56.7" Height="18.9" Border.Lines="All" Text="[总订单.高速订单]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text7" Left="311.85" Width="179.55" Height="18.9" Border.Lines="All" Text="[总订单.江苏地区]" AutoShrink="FontWidth" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text9" Left="491.4" Width="56.7" Height="18.9" Border.Lines="All" Text="[总订单.江苏安徽订单]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text11" Left="548.1" Width="47.25" Height="18.9" Border.Lines="All" Text="[总订单.逅厨]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text13" Left="595.35" Width="66.15" Height="18.9" Border.Lines="All" Text="[总订单.罗森订单]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <TextObject Name="Text15" Left="661.5" Width="66.15" Height="18.9" Border.Lines="All" Text="[总订单.总订单]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="宋体, 10pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="51.25" Width="756" Height="28.35" RepeatOnEveryPage="true">
+        <TextObject Name="Text2" Left="9.45" Width="47.25" Height="28.35" Border.Lines="All" Text="品类" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text4" Left="56.7" Width="198.45" Height="28.35" Border.Lines="All" Text="高速" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text6" Left="255.15" Width="56.7" Height="28.35" Border.Lines="All" Text="高速订单" AutoShrink="FontWidth" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text8" Left="311.85" Width="179.55" Height="28.35" Border.Lines="All" Text="江苏地区" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text10" Left="491.4" Width="56.7" Height="28.35" Border.Lines="All" Text="江苏安徽订单" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text12" Left="548.1" Width="47.25" Height="28.35" Border.Lines="All" Text="逅厨" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text14" Left="595.35" Width="66.15" Height="28.35" Border.Lines="All" Text="罗森订单" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+        <TextObject Name="Text16" Left="661.5" Width="66.15" Height="28.35" Border.Lines="All" Text="总订单" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+</Report>
